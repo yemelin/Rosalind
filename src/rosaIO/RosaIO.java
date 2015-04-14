@@ -8,9 +8,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-//TODO: fix keyboard input! In certain cases (e.g. MRNA task) class can run only
-//once inside IDE, even though runs normally from terminal. 
-//Probably it's a scanner issue
+
 public class RosaIO {
 //	public static String DATAPATH = "/home/geovvy/workspace/Rosalind/data/";
 	public static String DATAPATH = "./data/";
