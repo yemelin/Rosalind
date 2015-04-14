@@ -1,5 +1,8 @@
 package simple;
-
+// http://rosalind.info/problems/sign/
+// TODO: make universal (with BigInteger) (may be skipped locally for this 
+// task (condition is n<=6), but may be useful later)
+// TODO: move useful functions to libraries
 import java.math.BigInteger;
 import java.util.LinkedList;
 import java.util.List;

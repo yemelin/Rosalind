@@ -35,6 +35,23 @@ public class FastaIO {
 	public static Fasta[] inputToFastaArray() {
 		return listToFasta(RosaIO.readInputToList());
 	}
+// automatic choice between file (from args[0]) and terminal	
+	public static Fasta[] obtainFastaArray(String[]args, int requiredLength) {
+		Fasta[] fsta;
+		if (args.length>0)
+			fsta = FastaIO.fileToFastaArray(RosaIO.DATAPATH+args[0]);
+		else
+			fsta = FastaIO.inputToFastaArray();
+		if (fsta==null || fsta.length<requiredLength) {
+			prepareToExit();
+			System.exit(1);
+		}
+		return fsta;
+	}
+
+private static void prepareToExit() {
+	System.out.println("Input corrupted, program terminated");
+}
 //	-----------------------------------------------
 	public static void printFastaArray (Fasta fsta[]) {
 		for (int i = 0; i < fsta.length; i++) {

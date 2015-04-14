@@ -12,7 +12,8 @@ import java.util.Scanner;
 //once inside IDE, even though runs normally from terminal. 
 //Probably it's a scanner issue
 public class RosaIO {
-	public static String DATAPATH = "/home/geovvy/workspace/Rosalind/data/";
+//	public static String DATAPATH = "/home/geovvy/workspace/Rosalind/data/";
+	public static String DATAPATH = "./data/";
 	public static String TABLEPATH = "/home/geovvy/workspace/Rosalind/tables/";
 	public static final String fname ="rosalind_cons2.txt";
 //	copy-pasted from http://stackoverflow.com/questions/326390/
