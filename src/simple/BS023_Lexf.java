@@ -23,9 +23,10 @@ public class BS023_Lexf {
 		}
 	}
 	public static void main(String[] args) {
+//	input read as two strings: symbols and int(length of strings to be formed)
 		List <String> s = RosaIO.getAllInputToList(args);
 		int i=0;
-
+//split 1st string to alphabeth
 		while (sz<10 && i<s.get(0).length()) {
 			if (!isDelim(s.get(0).charAt(i)))
 				a[sz++]=s.get(0).charAt(i);
