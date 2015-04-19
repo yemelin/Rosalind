@@ -11,7 +11,7 @@ public class Rstring {
 	private final static String CODON = 
 			"FFLLSSSSYYZZCCZWLLLLPPPPHHQQRRRRIIIMTTTTNNKKSSRRVVVVAAAADDEEGGGG";
 	private final static String RNALETTERS = "UCAG";
-	private final static String DNALETTERS = "ACGT";
+	public final static String DNALETTERS = "ACGT";
 	public static final String STOPCODONS[] = {"UAA", "UAG", "UGA"};
 	public static final String STARTCODON = "AUG";
 	

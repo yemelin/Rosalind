@@ -14,6 +14,15 @@ public class RosaArrays {
 			swap(a, i, a.length-i-1); 
 	}
 	
+	public static void printArray(int a[]) {
+		for (int i = 0; i < a.length; i++) {
+			System.out.print(a[i]);
+			if (i<a.length-1)
+				System.out.print(" ");
+		}
+		System.out.println();
+	}
+
 //	longest common subsequence
 	public static int[] lcs (int a[], int b[]) {
 		int table[][] = new int[a.length+1][b.length+1];

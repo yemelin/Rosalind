@@ -36,7 +36,7 @@ public class BS029_Sign {
 //		System.out.println();
 		return a;
 	}
-	
+//	TODO: change from hard-coded 6 to handle arbitrary permutation's length
 	public static int[] numToDigs (int n, int radix) {
 		int [] a = new int [6];
 		int i=0;

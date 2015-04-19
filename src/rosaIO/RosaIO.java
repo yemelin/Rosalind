@@ -46,7 +46,7 @@ public class RosaIO {
 //	TODO: handle errors smoother. Perhaps, too many return null statements
 //	TODO: split label to actual label and comment
 	public static List<String> readFileToList (String path, Charset encoding){
-		System.out.println("trying to read "+path);
+//		System.out.println("trying to read "+path);
 //		Path filePath = new File(path).toPath(); 
 		Path filePath = Paths.get(path);
 		List<String> stringList = null;
