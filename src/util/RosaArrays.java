@@ -28,32 +28,49 @@ public class RosaArrays {
 		printArray(a,start,a.length-1);
 	}
 	public static void printArray(int a[]) {
-//		for (int i = 0; i < a.length; i++) {
-//			System.out.print(a[i]);
-//			if (i<a.length-1)
-//				System.out.print(" ");
-//		}
-//		System.out.println();
 		printArray(a,0,a.length-1);
 	}
 
 //	longest common subsequence
 	public static int[] lcs (int a[], int b[]) {
 		int table[][] = new int[a.length+1][b.length+1];
-		int ret[] = new int[a.length];
 		for (int i = 1; i <= a.length; i++) {
 			for (int j = 1; j<=b.length; j++) {
 				if (a[i-1]==b[j-1]) {
 					table[i][j] = table[i-1][j-1]+1;
-					ret[ table[i][j]-1 ] = a[i-1];
 				}
 				else
 					table[i][j] = max(table[i-1][j], table[i][j-1]);
 			}
 		}
-//	change length of the output array
-		int ret2[] = new int[ table[a.length][b.length] ];
-		System.arraycopy(ret, 0, ret2, 0, ret2.length);
+//	backtracking the longest subsequence
+		int ret[] = new int[ table[a.length][b.length] ];
+		for (int i=a.length, j=b.length, k = ret.length-1; i!=0 && j!=0;) {
+			if (table[i][j]==table[i-1][j])
+				i--;
+			else if (table[i][j]==table[i][j-1])
+				j--;
+			else {
+				ret[k--]=a[i-1];
+				i--; j--;
+			}
+		}
+		return ret;
+	}
+//	TODO: add backtracking the subsequence
+	public static Object[] lcs (Object a[], Object b[]) {
+		int table[][] = new int[a.length+1][b.length+1];
+		for (int i = 1; i <= a.length; i++) {
+			for (int j = 1; j<=b.length; j++) {
+				if (a[i-1].equals(b[j-1])) {
+					table[i][j] = table[i-1][j-1]+1;
+				}
+				else
+					table[i][j] = max(table[i-1][j], table[i][j-1]);
+			}
+		}
+//		change length of the output array
+		Object ret2[] = new Object[ table[a.length][b.length] ];
 		return ret2;
 	}
 	
