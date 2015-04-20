@@ -14,13 +14,27 @@ public class RosaArrays {
 			swap(a, i, a.length-i-1); 
 	}
 	
-	public static void printArray(int a[]) {
-		for (int i = 0; i < a.length; i++) {
-			System.out.print(a[i]);
-			if (i<a.length-1)
-				System.out.print(" ");
+	public static void printArray(int a[], int start, int end) {
+		if (end<a.length) {
+			for (int i = start; i < end+1; i++) {
+				System.out.print(a[i]);
+				if (i<a.length-1)
+					System.out.print(" ");
+			}
+			System.out.println();
 		}
-		System.out.println();
+	}
+	public static void printArray(int a[], int start) {
+		printArray(a,start,a.length-1);
+	}
+	public static void printArray(int a[]) {
+//		for (int i = 0; i < a.length; i++) {
+//			System.out.print(a[i]);
+//			if (i<a.length-1)
+//				System.out.print(" ");
+//		}
+//		System.out.println();
+		printArray(a,0,a.length-1);
 	}
 
 //	longest common subsequence
