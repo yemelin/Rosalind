@@ -30,7 +30,23 @@ public class RosaArrays {
 	public static void printArray(int a[]) {
 		printArray(a,0,a.length-1);
 	}
-
+//	TODO: can I print any array of primitive type with the same function?
+	public static void printArray(double a[], int start, int end) {
+		if (end<a.length) {
+			for (int i = start; i < end+1; i++) {
+				System.out.printf("%.5f",a[i]);
+				if (i<a.length-1)
+					System.out.print(" ");
+			}
+			System.out.println();
+		}
+	}
+	public static void printArray(double a[], int start) {
+		printArray(a,start,a.length-1);
+	}
+	public static void printArray(double a[]) {
+		printArray(a,0,a.length-1);
+	}
 //	longest common subsequence
 	public static int[] lcs (int a[], int b[]) {
 		int table[][] = new int[a.length+1][b.length+1];
