@@ -5,16 +5,9 @@ import java.util.List;
 import rosaIO.FastaIO;
 import rosaIO.Fasta;
 import rosaIO.RosaIO;
+import rosaIO.Rstring;
 
 public class BS005_Gc {
-	public static double countGC (String s) {
-		int count=0;
-		for (int i = 0; i < s.length(); i++) {
-			if (s.charAt(i)=='G' || s.charAt(i)=='C')
-				count++;
-		}
-		return (double)(count)/s.length();
-	}
 	public static void main(String[] args) {
 		List <String> ls;
 		Fasta [] fsta;
@@ -29,7 +22,7 @@ public class BS005_Gc {
 		if ((fsta = FastaIO.listToFasta(ls))!=null) {
 			for (int i = 0; i < fsta.length; i++) {
 //				System.out.println(countGC(fsta[i].dna)+" "+fsta[i].label);
-				if ((gc = countGC(fsta[i].dna))>maxgc) {
+				if ((gc = Rstring.countGC(fsta[i].dna))>maxgc) {
 					maxfst = i;
 					maxgc = gc;
 				}

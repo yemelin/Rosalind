@@ -145,4 +145,33 @@ public class Rstring {
 			System.out.println(getMass(keys.charAt(i)));
 		}
 	}
+
+	public static double countGC (String s) {
+		int count=0;
+		for (int i = 0; i < s.length(); i++) {
+			if (s.charAt(i)=='G' || s.charAt(i)=='C')
+				count++;
+		}
+		return (double)(count)/s.length();
+	}
+
+	public static double calculateLogProb(String dna, double gcP) {
+		double ret = 0;
+		for (int i = 0; i < dna.length(); i++) {
+			ret += Math.log10(getProbFromGC(dna.charAt(i), gcP));
+		}
+		return ret;
+	}
+
+	public static double getProbFromGC(char c, double gcP) {
+		double ret;
+		switch (c) {
+			case 'A':
+			case 'T': ret = (1 - gcP)/2; break;
+			case 'G':
+			case 'C': ret = gcP/2; break;
+			default: ret = 0;
+		}
+		return ret;
+	}
 }

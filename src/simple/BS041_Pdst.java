@@ -19,8 +19,6 @@ public class BS041_Pdst {
 		return ret;
 	}
 	
-	public void printArrayDouble (double a) {
-	}
 	public static void main(String[] args) {
 		Fasta fsta[] = FastaIO.obtainFastaArray(args, 0);
 		if (fsta!=null && fsta.length>0) {

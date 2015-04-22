@@ -1,6 +1,10 @@
 package rosaIO;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -85,5 +89,20 @@ public class RosaIO {
 		}
 		System.out.println();
 	}
+	public static InputStream obtainInputStream (String[] args) {
+			InputStream is=null;
+			if (args.length>0) {
+				try {
+					is = new FileInputStream (new File(DATAPATH+args[0]));
+				}
+				catch (FileNotFoundException e) {
+					System.out.println(DATAPATH+args[0]+ "not found");
+	//				System.exit(1);
+				}
+			}
+			else
+				is = System.in;
+			return is;
+		}
 
 }
