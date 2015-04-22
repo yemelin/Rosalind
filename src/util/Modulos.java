@@ -1,13 +1,12 @@
 package util;
 
-import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.Arrays;
 
 public class Modulos {
 //	multiply and take modulo, avoid overflowing integers. Not using BigIntegers
 //	for the beginning, assume modulo<=1000000
 	public static final long HALFLONGMAX = Long.MAX_VALUE/2;
+	public static final int ROSAMODULO = 1000000;
 	private static int multMod (int m, int n, int modulo) {
 		int bigger = m>n? m:n;
 		int smaller = m>n? n:m;

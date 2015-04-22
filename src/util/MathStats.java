@@ -23,7 +23,7 @@ public class MathStats {
 			m = n-m;	//now n-m = "old m"		
 		return factFall(m,n).divide(factFall(0,n-m));
 	}
-	
+// A(n,m) = n!/(n-m)!	
 	public static BigInteger partPerm(int n, int m) {
 		return factFall(n-m, n);
 	}

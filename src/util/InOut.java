@@ -22,14 +22,10 @@ public class InOut {
 	
 	public static int[] readInt (InputStream is, int n){
 		int a[] = new int[n];
-		System.out.print("reading...");
 		Scanner sc = new Scanner(is);
-		if (sc.hasNextLine())
-			System.out.println(" line found...");
 		for (int i=0; i<n; i++) {
 			if (sc.hasNextInt()) {
 				a[i] = sc.nextInt();
-				System.out.println("read "+ a[i]);
 			}
 			else
 				return null;
