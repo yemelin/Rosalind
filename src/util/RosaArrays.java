@@ -47,7 +47,35 @@ public class RosaArrays {
 	public static void printArray(double a[]) {
 		printArray(a,0,a.length-1);
 	}
+
+//	Wagner-Fischer
+	public static int editDistance (String s1, String s2) {
+//		System.out.println("Edit distance between "+s1);
+//		System.out.println(s2);
+		int table[][] = new int [s1.length()+1][s2.length()+1];
+		for (int i = 0; i <= s1.length(); i++)
+			table[i][0] = i;
+		for (int j = 0; j <= s2.length(); j++) 
+			table[0][j]=j;
+		for (int i = 1; i <= s1.length(); i++) {
+			for (int j = 1; j <= s2.length(); j++) {
+				table[i][j]=table[i-1][j-1];
+				if (s1.charAt(i-1)!=s2.charAt(j-1)) {//look for min previous
+					if	(table[i][j-1] < table[i][j])
+						table[i][j] = table[i][j-1]; //ins
+					if (table[i-1][j]< table[i][j])
+						table[i][j] = table[i-1][j]; //subst
+													//i-1,j-1 is min -> del
+					table[i][j]++;	//+1 edit operation
+				}
+			}
+		}
+		return table[s1.length()][s2.length()];
+	}
 //	longest common subsequence
+//	TODO: generalize it. Array should be passed as a plain object and
+//	there should be some comparator class, or some adapter classes should be
+//	passed instead of arrays
 	public static int[] lcs (int a[], int b[]) {
 		int table[][] = new int[a.length+1][b.length+1];
 		for (int i = 1; i <= a.length; i++) {
