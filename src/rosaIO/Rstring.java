@@ -163,6 +163,12 @@ public class Rstring {
 		return ret;
 	}
 
+// probability, that a random dna string is equal to the given one (with single
+//	nucleotides probabilities based on gc
+	public static double dnaProb (String dna, double gc) {
+		return Math.pow(10, calculateLogProb(dna, gc));
+	}
+	
 	public static double getProbFromGC(char c, double gcP) {
 		double ret;
 		switch (c) {
