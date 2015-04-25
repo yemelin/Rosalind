@@ -34,9 +34,15 @@ public class BS047_Eval {
 //		System.out.println("pattern="+pattern+"\ninp="+inp);
 		gcs = strToDoubleArray(inp);
 //		System.out.println(n+" \n"+java.util.Arrays.toString(gcs)+"\n"+inp);
-		double output[] = new double[gcs.length];
+//		double output[] = new double[gcs.length];
+// as we have multiplication, log10 can be used instead direct probabilities
 		for (double gc : gcs)
-			System.out.printf("%.5f ", (n-pattern.length()+1)*Rstring.dnaProb(pattern, gc));
+			System.out.printf("%f ", Math.pow(10, Math.log10(n-pattern.length()+1)+Rstring.calculateLogProb(pattern, gc)));
+		System.out.println();
+//		the same result with probabilities, no precision gain
+		for (double gc : gcs) {
+			System.out.printf("%f ", (n-pattern.length()+1)*Rstring.dnaProb(pattern, gc));
+		}
 		System.out.println();
 	}
 }
