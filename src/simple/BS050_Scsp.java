@@ -6,6 +6,7 @@ import java.util.Scanner;
 import rosaIO.RosaIO;
 import util.RosaArrays;
 
+// TODO: consider getting rid of duplicated code handling each of two strings
 public class BS050_Scsp {
 	public static String scsp (String s1, String s2) {
 		String cs = RosaArrays.lcs(s1,s2);
