@@ -101,6 +101,34 @@ public class RosaArrays {
 		}
 		return ret;
 	}
+	
+	public static String lcs (String a, String b) {
+		int table[][] = new int[a.length()+1][b.length()+1];
+		for (int i = 1; i <= a.length(); i++) {
+			for (int j = 1; j<=b.length(); j++) {
+				if (a.charAt(i-1)==b.charAt(j-1)) {
+					table[i][j] = table[i-1][j-1]+1;
+				}
+				else
+					table[i][j] = max(table[i-1][j], table[i][j-1]);
+			}
+		}
+//	backtracking the longest subsequence
+		char ret[] = new char[ table[a.length()][b.length()] ];
+		for (int i=a.length(), j=b.length(), k = ret.length-1; i!=0 && j!=0;) {
+			if (table[i][j]==table[i-1][j])
+				i--;
+			else if (table[i][j]==table[i][j-1])
+				j--;
+			else {
+				ret[k--]=a.charAt(i-1);
+				i--; j--;
+			}
+		}
+		return new String(ret);
+	}
+	
+	
 //	TODO: add backtracking the subsequence
 	public static Object[] lcs (Object a[], Object b[]) {
 		int table[][] = new int[a.length+1][b.length+1];
