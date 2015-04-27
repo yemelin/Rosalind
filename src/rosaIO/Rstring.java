@@ -1,12 +1,18 @@
 package rosaIO;
 
 import java.nio.charset.Charset;
+import java.util.Arrays;
 //import java.util.Iterator;
 import java.util.List;
+
+import util.RosaArrays;
 
 //TODO: just use dictionary class like HashMap instead of all this (de)coding
 //TODO: handle errors for corrupted strings
 //TODO: move proteins operations to a separate class
+//TODO: it's high time to rewrite everything using a dictionary! It will make
+//even sorting easier, as comparators could be used then
+//TODO: at least, the ugly hack around approximate binsearch has to be fixed
 public class Rstring {
 	private final static String CODON = 
 			"FFLLSSSSYYZZCCZWLLLLPPPPHHQQRRRRIIIMTTTTNNKKSSRRVVVVAAAADDEEGGGG";
@@ -124,13 +130,105 @@ public class Rstring {
 		return masses[keys.indexOf(prot)];
 	}
 	public static double getMass(String protein) {
+		return getMass(protein, 0, protein.length());
+	}
+	public static double getMass (String protein, int start, int end) {
+		if (end>protein.length())
+			return 0;
 		double ret = 0f;
-		for (int i = 0; i < protein.length(); i++) {
+		for (int i = start; i < end; i++) {
 			ret+=getMass(protein.charAt(i));
 		}
 		return ret;
 	}
-//----------------------------------------------------------------
+	private static boolean _massTableSorted = false;
+
+//	the hack. The problem is, binsearch checks exact values, while mass values
+//	may have some precision difference. And since they are primitive double
+//	values, binsearch with comparator can't be applied!
+	public static char getProtByMass(double mass, double precision) {
+		if (!_massTableSorted)
+			sortMassTable();
+		int retInd = Arrays.binarySearch(masses, mass);
+		if (retInd<0) {
+			int tmpret = (retInd>=0)? retInd: Math.abs(retInd+1);
+//			System.out.println("tmpret = "+ tmpret);
+//			System.out.println(Math.abs(mass-masses[tmpret-1])+" "+
+//					Math.abs(mass-masses[tmpret]));;
+			if (tmpret>0 && Math.abs(mass-masses[tmpret-1])<precision) 
+				retInd = tmpret-1;
+			else if	(tmpret<masses.length && Math.abs(mass-masses[tmpret])<precision)
+				retInd = tmpret;
+		}
+		if (retInd>=0) {
+//			System.out.println("tmp ret:" + retInd);//+ " "+keys.charAt(retInd));
+			return keys.charAt(retInd);
+		}
+		else return (char)-1;
+	}
+	private static int min (int a, int b) {
+		return (a<b)? a:b;
+	}
+//	private static void merge (double[] d1, int left, int right, int end, double[] d2){
+//		int il = left, ir = right;
+//		for (int j=left; j<end; j++) {
+//			if (il<right && (ir>=end || d1[il]<=d1[ir])) {
+//				d2[j] = d1[il];
+//				il++;
+//			}
+//			else {
+//				d2[j]=d1[ir];
+//				ir++;
+//			}
+//		}			
+//	}
+	
+	private static void merge (int[] d1, int left, int right, int end, int[] d2){
+		int il = left, ir = right;
+		for (int j=left; j<end; j++) {
+			if (il<right && (ir>=end || masses[ d1[il] ]<=masses[ d1[ir] ])) {
+				d2[j] = d1[il];
+				il++;
+			}
+			else {
+				d2[j]=d1[ir];
+				ir++;
+			}
+		}
+	}
+		
+	private static void sortMassTable() {
+			int len = masses.length;
+			double[] buf = new double[len];
+			int ind[] = new int[len];
+			for (int i=0; i<ind.length; ind[i] = i++);
+			int indbuf[] = new int[len];
+//			System.out.println("Before cycle");
+			for (int w=1; w<len; w*=2) {
+				for (int i=0; i<len; i+=w*2) {
+//					merge(masses, i, min(i+w, len), min(i+2*w,len), buf);
+					merge(ind, i, min(i+w, len), min(i+2*w,len), indbuf);
+				}
+//				double[] tmp = masses;
+//				masses = buf; buf = tmp;
+				int tmp2[] = ind;
+				ind = indbuf; indbuf=tmp2;
+//				RosaArrays.printArray(masses);
+//				RosaArrays.printArray(ind);
+			}
+			StringBuffer sb = new StringBuffer();
+			sb.setLength(keys.length());
+			
+			for (int i = 0; i < keys.length(); i++) {
+				sb.setCharAt(i, keys.charAt(ind[i]));
+				buf[i] = masses[ind[i]];
+			}
+			_massTableSorted = true;
+			masses = buf;
+			keys = sb.toString();
+	}
+
+	//----------------------------------------------------------------
 //	print array of string
 	public static void printArrayString (String as[]) {
 		System.out.print("[ ");
@@ -138,12 +236,6 @@ public class Rstring {
 			System.out.print(as[i]+", ");
 		}
 		System.out.println(" ]");
-	}
-	public static void main(String[] args) {
-		loadMassTable();
-		for (int i = 0; i < keys.length(); i++) {			
-			System.out.println(getMass(keys.charAt(i)));
-		}
 	}
 
 	public static double countGC (String s) {
@@ -180,4 +272,13 @@ public class Rstring {
 		}
 		return ret;
 	}
+//	---------------------------------
+	public static void main(String[] args) {
+		loadMassTable();
+		sortMassTable();
+		for (int i = 0; i < keys.length(); i++) {
+			System.out.println(keys.charAt(i)+" "+getMass(keys.charAt(i)));			
+		}
+	}
+
 }

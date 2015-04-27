@@ -16,7 +16,7 @@ import java.util.Scanner;
 public class RosaIO {
 //	public static String DATAPATH = "/home/geovvy/workspace/Rosalind/data/";
 	public static String DATAPATH = "/home/vvy/git/rosalind/data/";
-	public static String TABLEPATH = "/home/geovvy/workspace/Rosalind/tables/";
+	public static String TABLEPATH = "/home/vvy/git/rosalind/tables/";
 	public static final String fname ="rosalind_cons2.txt";
 //	copy-pasted from http://stackoverflow.com/questions/326390/
 	public static String readFile(String path, Charset encoding) {
