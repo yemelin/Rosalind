@@ -5,8 +5,6 @@ import java.util.Arrays;
 //import java.util.Iterator;
 import java.util.List;
 
-import util.RosaArrays;
-
 //TODO: just use dictionary class like HashMap instead of all this (de)coding
 //TODO: handle errors for corrupted strings
 //TODO: move proteins operations to a separate class
@@ -273,6 +271,19 @@ public class Rstring {
 		return ret;
 	}
 //	---------------------------------
+
+	public static int hamming (String s1, String s2) {
+		int ret=0;
+		if (s1.length()!=s2.length())
+			ret = -1;
+		else
+			for (int i = 0; i < s1.length(); i++) {
+				if (s1.charAt(i)!=s2.charAt(i))
+					ret++;
+			}
+		return ret;
+	}
+
 	public static void main(String[] args) {
 		loadMassTable();
 		sortMassTable();
@@ -280,5 +291,4 @@ public class Rstring {
 			System.out.println(keys.charAt(i)+" "+getMass(keys.charAt(i)));			
 		}
 	}
-
 }

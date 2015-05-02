@@ -1,6 +1,7 @@
 package simple;
 
-import java.util.Scanner;
+import rosaIO.RosaPrinter;
+import rosaIO.Task;
 
 //http://rosalind.info/problems/lexv/
 //TODO: get rid of global vars, make input more universal and add to libs
@@ -25,7 +26,7 @@ public class BS039_Lexv {
 		return alph.charAt(i);
 	}
 	
-	public static void printAllWordsNonRec (String alph, int maxlen) {
+	public static void printAllWordsNonRec (String alph, int maxlen, RosaPrinter rp) {
 		int len=0;
 		StringBuffer sb = new StringBuffer();
 		sb.setLength(maxlen);
@@ -41,16 +42,16 @@ public class BS039_Lexv {
 					sb.setCharAt(len-1, nextChar(alph, sb.charAt(len-1)));
 				}
 			}
-			System.out.println(sb.substring(0,len));
+			rp.println(sb.substring(0,len));
 		} while (len>0);
 	}
 //TODO: check for invalid input
 	public static void main(String[] args) {
-		Scanner sc = new Scanner (System.in);
-		String alph = sc.nextLine().replaceAll("\\s", "");
-		int n = sc.nextInt();
+		Task io = new Task("lexv", args);
+		String alph = io.scanner.readLine().replaceAll("\\s", "");
+		int n = io.scanner.readInt();
 		sb.setLength(n);
-		printAllWordsNonRec(alph, n);
+		printAllWordsNonRec(alph, n, io.printer);
 
 	}
 

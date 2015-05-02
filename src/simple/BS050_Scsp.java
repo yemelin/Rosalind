@@ -1,9 +1,6 @@
 package simple;
 
-import java.io.InputStream;
-import java.util.Scanner;
-
-import rosaIO.RosaIO;
+import rosaIO.Task;
 import util.RosaArrays;
 
 // TODO: consider getting rid of duplicated code handling each of two strings
@@ -27,15 +24,14 @@ public class BS050_Scsp {
 	}
 	
 	public static void main(String[] args) {
-		InputStream is = RosaIO.obtainInputStream(args);
-		Scanner sc = new Scanner(is);
+		Task io = new Task("scsp", args);
 //		String s1 = "ATCTGAT";
 //		String s2 = "TGCATA";
-		String s1 = sc.nextLine();
-		String s2 = sc.nextLine();
-		System.out.println(RosaArrays.lcs(s1, s2));
-		System.out.println(scsp(s1, s2));
-		sc.close();
+		String s1 = io.scanner.readLine();
+		String s2 = io.scanner.readLine();
+		io.printer.println(RosaArrays.lcs(s1, s2));
+		io.printer.println(scsp(s1, s2));
+		io.close();
 	}
 
 }

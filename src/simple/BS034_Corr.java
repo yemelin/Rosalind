@@ -1,13 +1,14 @@
 package simple;
 
-import java.util.Iterator;
 import java.util.LinkedList;
-
 import rosaIO.Fasta;
-import rosaIO.FastaIO;
-import rosaIO.RosaIO;
 import rosaIO.Rstring;
+import rosaIO.Task;
 
+//TODO: clarify the code
+//TODO: check if LinkedLIst is really needed or List<> is enough, change back
+//readFastaList type to simple List<>, if needed
+//TODO: use library's hamming
 public class BS034_Corr {
 	private static boolean removeAllNextCopies(LinkedList<Fasta> lf, int n ) {
 		int sz = lf.size();
@@ -21,11 +22,9 @@ public class BS034_Corr {
 	}
 
 	public static void main(String[] args) {
-		LinkedList<Fasta> fstl;
-		if (args.length>0)
-			fstl = FastaIO.fileToFastaList(RosaIO.DATAPATH+args[0]);
-		else
-			fstl= FastaIO.inputToFastaList();
+		Task io = new Task("sseq", args);
+		LinkedList<Fasta> fstl = io.scanner.readFastaList();
+
 		LinkedList<Fasta> wrong = new LinkedList<>();
 		Fasta fst;
 		int i=0;
@@ -38,7 +37,7 @@ public class BS034_Corr {
 		}
 		String corr = "none found";
 		for (i=0; i<wrong.size(); i++) {
-			System.out.print(wrong.get(i).dna);
+			io.printer.print(wrong.get(i).dna);
 			for (int j=0; j<fstl.size(); j++)
 				if (hamming(wrong.get(i).dna, fstl.get(j).dna )==1) {
 					corr = fstl.get(j).dna;
@@ -49,7 +48,7 @@ public class BS034_Corr {
 					corr = Rstring.dnaReverseComplement(fstl.get(j).dna);
 					break;
 				}
-			System.out.println("->"+corr);
+			io.printer.println("->"+corr);
 		}
 	}
 

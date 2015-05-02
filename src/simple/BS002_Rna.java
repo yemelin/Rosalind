@@ -1,5 +1,6 @@
 package simple;
-import rosaIO.RosaIO;
+
+import rosaIO.Task;
 public class BS002_Rna {
 	public static String manualReplace(String s, char oldchar, char newchar) {
 		StringBuffer sb = new StringBuffer(s);
@@ -10,10 +11,10 @@ public class BS002_Rna {
 		return sb.toString();
 	}
 	public static void main(String[] args) {
-		String s=RosaIO.getAllInput(args);
-		if (s!=null) {
-			System.out.println(s.replace('T', 'U'));
-			System.out.println(manualReplace(s, 'T', 'U'));
-		}	
+		Task io = new Task("rna", args);
+		String s = io.scanner.readLine();
+		io.printer.println(s.replace('T', 'U'));	//built-in java function
+		io.printer.println(manualReplace(s, 'T', 'U'));	
+		io.close();
 	}
 }

@@ -4,8 +4,8 @@ package simple;
 import java.util.TreeSet;
 
 import rosaIO.Fasta;
-import rosaIO.FastaIO;
-import rosaIO.Rstring;;
+import rosaIO.Rstring;
+import rosaIO.Task;
 public class BS018_Orf {
 	public static String[] findAllProts (String dna, TreeSet<String> set) {
 		int start = 0;
@@ -14,8 +14,9 @@ public class BS018_Orf {
 
 		while ((start = sb.indexOf(Rstring.STARTCODON, start))!=-1) {			
 			nextprot = Rstring.rnaToProtein(sb.substring(start));
-//check if there is STOP in the end or just the end of the string			
-			if (nextprot.length()==(sb.length()-start)/3)
+//check if there is STOP in the end or just the end of the string
+//TODO: it seems the following check is either unneeded or wrong
+			if (nextprot.length()==(sb.length()-start)/3) //WTF?
 				break;
 //			System.out.println(nextprot);
 			set.add(nextprot);
@@ -32,14 +33,9 @@ public class BS018_Orf {
 	}
 
 	public static void main(String[] args) {
-//	TODO: check input for errors
-		Fasta fst[];
-		if (args.length>0)
-			fst = FastaIO.fileToFastaArray(args[0]);
-		else
-			fst= FastaIO.inputToFastaArray();
-		
-		for (String st : findAllProteins(fst[0].dna))
-			System.out.println(st);
+		Task io = new Task("orf", args);
+		Fasta[] fsta = io.scanner.readFastaArray();
+		for (String st : findAllProteins(fsta[0].dna))
+			io.printer.println(st);
 	}
 }

@@ -1,8 +1,7 @@
 package simple;
 
 import rosaIO.Fasta;
-import rosaIO.FastaIO;
-import rosaIO.RosaIO;
+import rosaIO.Task;
 
 
 // http://rosalind.info/problems/sseq/
@@ -16,7 +15,12 @@ public class BS030_Sseq {
 	}
 
 	public static void main(String[] args) {
-		Fasta[] fsta = FastaIO.obtainFastaArray(args, 2);
-		RosaIO.printArray(subSeqIndices(fsta[0].dna, fsta[1].dna));
+		Task io = new Task("sseq", args);
+		Fasta[] fsta = io.scanner.readFastaArray();
+		if (fsta.length==2)
+			io.printer.printArray(subSeqIndices(fsta[0].dna, fsta[1].dna));
+		else
+			System.err.println("Input corrupted");
+		io.close();
 	}
 }

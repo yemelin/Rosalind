@@ -1,9 +1,8 @@
 package simple;
 
 import rosaIO.Fasta;
-import rosaIO.FastaIO;
 import rosaIO.Rstring;
-import util.RosaArrays;
+import rosaIO.Task;
 
 public class BS036_Kmer {
 	public static int[] numToDigs (int n, int radix, int length) {
@@ -49,8 +48,7 @@ public class BS036_Kmer {
 					Rstring.DNALETTERS.length())]++;
 //			if (i==dna.length()-k)
 //				System.out.println("last processed:"+dna.substring(i, i+k));
-		}
-		
+		}		
 		return a;
 	}
 	public static void main(String[] args) {
@@ -58,9 +56,11 @@ public class BS036_Kmer {
 //		int digs[] = {1,2,4};
 //		System.out.println(digsToNum(digs,10));
 //		RosaArrays.printArray(numToDigs(14, 4, 4));
-		Fasta[] fsta = FastaIO.obtainFastaArray(args, 1);
+		Task io = new Task("kmer", args);
+		Fasta[] fsta = io.scanner.readFastaArray();
 //		System.out.println(fsta[0].dna);
-		RosaArrays.printArray(dnaKmerStats(fsta[0].dna, 4));
+		io.printer.printArray(dnaKmerStats(fsta[0].dna, 4));
+		io.close();
 	}
 
 }

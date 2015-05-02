@@ -1,8 +1,8 @@
 package simple;
 
 import rosaIO.Fasta;
-import rosaIO.FastaIO;
 import rosaIO.Rstring;
+import rosaIO.Task;
 import util.RosaArrays;
 
 public class BS038_Lcsq {
@@ -22,11 +22,16 @@ public class BS038_Lcsq {
 	}
 	
 	public static void main(String[] args) {
-		Fasta[] fsta = FastaIO.obtainFastaArray(args, 2);
-		int a1 [] = stringToDigs(fsta[0].dna, Rstring.DNALETTERS);
-		int a2 [] = stringToDigs(fsta[1].dna, Rstring.DNALETTERS);
-		System.out.println(digsToString(RosaArrays.lcs (a1,a2), Rstring.DNALETTERS));
+		Task io = new Task("lcsq", args);
+		Fasta[] fsta = io.scanner.readFastaArray();
+		if (fsta.length==2) {
+			int a1 [] = stringToDigs(fsta[0].dna, Rstring.DNALETTERS);
+			int a2 [] = stringToDigs(fsta[1].dna, Rstring.DNALETTERS);
+			io.printer.println(digsToString(RosaArrays.lcs (a1,a2), Rstring.DNALETTERS));
+		}
+		else System.err.println("Input corrupted");
 //		char c = lcs (fsta[0].dna.toCharArray(), fsta[0].dna.toCharArray());
+		io.close();
 	}
 
 }

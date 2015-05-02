@@ -1,21 +1,17 @@
 package bs025_Long;
 import java.util.ArrayList;
 
-import rosaIO.FastaIO;
-import rosaIO.RosaIO;
+import rosaIO.Fasta;
+import rosaIO.Task;
 public class BS025_Long {
 	public static void main(String[] args) {
-		rosaIO.Fasta fst [];
-		if (args.length>0)
-			fst = FastaIO.fileToFastaArray(RosaIO.DATAPATH+args[0]);
-		else
-			fst = FastaIO.inputToFastaArray();
-		ArrayList <String>ls = new ArrayList<>();
-		
-		for (rosaIO.Fasta f : fst) {
+		Task io = new Task("long", args);
+		Fasta[] fsta = io.scanner.readFastaArray();
+		ArrayList <String>ls = new ArrayList<>();		
+		for (rosaIO.Fasta f : fsta)
 			ls.add(f.dna);
-//			System.out.println(f.dna);
-		}
-		System.out.println(Strings.merge(ls));
+		
+		io.printer.println(Strings.merge(ls));
+		io.close();
 	}
 }

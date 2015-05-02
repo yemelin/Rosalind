@@ -1,5 +1,4 @@
 package simple;
-
 /*
 k+m+l = n, k are homozygous dominant (AA), m - Aa, l - aa
 P(D) - probabilty, that the child of two organism will have a dominant gene
@@ -19,10 +18,8 @@ P(D) = (k*(2n-k-1)+m*(m-1)*0.75 + m*l)/A
 
 P(2,2,2) = 3/5 + (1.5+4)/30 = 3/5+5.5/30 = 23.5/30 ~ 0.7833
 */
-
-import rosaIO.Task;
-
-public class BS007_Iprb {
+import util.InOut;
+public class Old_BS007_Iprb {
 	final private static int AA = 0;
 	final private static int Aa = 1;
 	final private static int aa = 2;
@@ -32,10 +29,7 @@ public class BS007_Iprb {
 		return (k*(n+m+l-1) + m*(m-1)*0.75 + m*l)/(n*(n-1));
 	}
 	public static void main(String[] args) {
-		Task io = new Task("iprb", args);
-		int nums[] = io.scanner.readIntArray();
-		if (nums.length>=3)
-			System.out.println(probDominant(nums[AA], nums[Aa], nums[aa]));
-		io.close();
+		int nums[] = InOut.readInt(3);
+		System.out.println(probDominant(nums[AA], nums[Aa], nums[aa]));
 	}
 }

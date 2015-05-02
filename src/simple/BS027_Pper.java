@@ -2,7 +2,7 @@ package simple;
 
 import java.math.BigInteger;
 
-import util.InOut;
+import rosaIO.Task;
 import util.MathStats;
 public class BS027_Pper {
 //	multiply and take modulo, avoid overflowing integers. Not using BigIntegers
@@ -27,16 +27,17 @@ public class BS027_Pper {
 	}
 	
 	public static void main(String[] args) {
-		int input[] = InOut.readInt(2);
-		if ((input!=null) && (input[0]>=input[1])) {
-			System.out.println
-			(MathStats.partPerm(input[0], input[1]).mod(BigInteger.valueOf(1000000)));
+		Task io = new Task("pper", args);		
+		int n = io.scanner.readInt();
+		int m = io.scanner.readInt();
+		if (n>=m) {
+			io.printer.println
+			(MathStats.partPerm(n, m).mod(BigInteger.valueOf(1000000)));
 			System.out.println("Recurrent alternative, for comparison: "+
-					factFallMod(input[0]-input[1], input[0], 1000000));
+					factFallMod(n-m, n, 1000000));
 		}
 		else
 			System.out.println("Input corrupted");
-		
-		
+		io.close();
 	}
 }

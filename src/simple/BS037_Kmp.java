@@ -2,6 +2,7 @@ package simple;
 
 import rosaIO.Fasta;
 import rosaIO.FastaIO;
+import rosaIO.Task;
 import util.RosaArrays;
 
 public class BS037_Kmp {
@@ -26,8 +27,11 @@ public class BS037_Kmp {
 	}
 
 	public static void main(String[] args) {
-		Fasta [] fst = FastaIO.obtainFastaArray(args, 1);
-		RosaArrays.printArray(prefixFunction(fst[0].dna), 1);
+		Task io = new Task("kmp", args);
+		Fasta [] fst = io.scanner.readFastaArray();
+//TODO: add range printing to RosaPrinter
+		io.printer.printArray(prefixFunction(fst[0].dna), 1);
+		io.close();
 	}
 
 }

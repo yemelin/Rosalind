@@ -1,48 +1,29 @@
 package simple;
 
-import java.io.InputStream;
-import java.util.Scanner;
-
-import rosaIO.RosaIO;
 import rosaIO.Rstring;
+import rosaIO.Task;
 
 //http://rosalind.info/problems/eval/
-// TODO: organize normal input!!!
+
 public class BS047_Eval {
 
-	public static double[] strToDoubleArray(String s) {
-		double[] d = new double[20];
-		int i=0;
-		for (String  st : s.split("\\s")) {
-			try {
-				d[i++] = Double.parseDouble(st);
-			}
-			catch (NumberFormatException nfe){}
-		}
-		double d2[] = new double[i];
-		System.arraycopy(d, 0, d2, 0, i);
-		return d2;
-	}
 	public static void main(String[] args) {
-		InputStream is = RosaIO.obtainInputStream(args);
-		Scanner sc = new Scanner(is);
-		int n = sc.nextInt();
-		sc.nextLine();
-		String pattern = sc.nextLine();
-		double gcs[];// = {0.25, 0.5, 0.75,};
-		String inp = sc.nextLine();
-//		System.out.println("pattern="+pattern+"\ninp="+inp);
-		gcs = strToDoubleArray(inp);
+		Task io = new Task("eval", args);
+		int n = io.scanner.readInt();
+		String pattern = io.scanner.readLine();
+		double gcs[] = io.scanner.readDoubleArray();
+	
 //		System.out.println(n+" \n"+java.util.Arrays.toString(gcs)+"\n"+inp);
 //		double output[] = new double[gcs.length];
 // as we have multiplication, log10 can be used instead direct probabilities
 		for (double gc : gcs)
-			System.out.printf("%f ", Math.pow(10, Math.log10(n-pattern.length()+1)+Rstring.calculateLogProb(pattern, gc)));
-		System.out.println();
+			io.printer.printf("%f ", Math.pow(10, Math.log10(n-pattern.length()+1)+Rstring.calculateLogProb(pattern, gc)));
+		io.printer.println();
 //		the same result with probabilities, no precision gain
 		for (double gc : gcs) {
 			System.out.printf("%f ", (n-pattern.length()+1)*Rstring.dnaProb(pattern, gc));
 		}
 		System.out.println();
 	}
+	
 }

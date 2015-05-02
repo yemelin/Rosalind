@@ -2,7 +2,7 @@ package simple;
 
 // http://rosalind.info/problems/tree/
 import rosaIO.Fasta;
-import rosaIO.FastaIO;
+import rosaIO.Task;
 
 public class BS031_Tran {
 	public static double transRatio(String s1, String s2) {
@@ -37,7 +37,12 @@ public class BS031_Tran {
 	}
 	
 	public static void main(String[] args) {
-		Fasta[] fsta = FastaIO.obtainFastaArray(args, 2);
-		System.out.println(transRatio(fsta[0].dna, fsta[1].dna));
+		Task io = new Task("sseq", args);
+		Fasta[] fsta = io.scanner.readFastaArray();
+		if (fsta.length==2)
+			io.printer.println(transRatio(fsta[0].dna, fsta[1].dna));
+		else
+			System.err.println("Input corrupted");
+		io.close();
 	}
 }

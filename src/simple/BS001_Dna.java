@@ -1,6 +1,6 @@
 package simple;
 
-import rosaIO.RosaIO;
+import rosaIO.Task;
 
 //http://rosalind.info/problems/dna/
 public class BS001_Dna {
@@ -18,7 +18,7 @@ public class BS001_Dna {
 			else break;				
 		}
 		if (a[mid]!=c)
-			mid *=-1;
+			mid = -mid-1;
 		return mid;
 	}
 	//Return array of number of appearances of chars from alpha in s 
@@ -30,8 +30,9 @@ public class BS001_Dna {
 		return ret;
 	}
 	public static void main(String[] args) {
-		String s = RosaIO.getAllInput(args);
-		if (s!=null)
-			RosaIO.printArray(countChars(s,alpha));
+		Task rt = new Task ("dna", args);
+		String s = rt.scanner.readLine();
+		rt.printer.printArray(countChars(s,alpha));
+		rt.close();
 	}
 }

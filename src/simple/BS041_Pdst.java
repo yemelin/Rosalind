@@ -1,8 +1,7 @@
 package simple;
 
 import rosaIO.Fasta;
-import rosaIO.FastaIO;
-import util.RosaArrays;
+import rosaIO.Task;
 
 public class BS041_Pdst {
 	public static double distance(String s1, String s2) {
@@ -20,16 +19,15 @@ public class BS041_Pdst {
 	}
 	
 	public static void main(String[] args) {
-		Fasta fsta[] = FastaIO.obtainFastaArray(args, 0);
-		if (fsta!=null && fsta.length>0) {
-			double distances [][] = new double[fsta.length][fsta.length];
-			for (int i = 0; i < distances.length; i++) {
-				for (int j = 0; j < distances.length; j++) {
-					distances[i][j] = distance(fsta[i].dna, fsta[j].dna);
-				}
-				RosaArrays.printArray(distances[i]);
+		Task io = new Task("pdst", args);
+		Fasta fsta[] = io.scanner.readFastaArray();
+
+		double distances [][] = new double[fsta.length][fsta.length];
+		for (int i = 0; i < distances.length; i++) {
+			for (int j = 0; j < distances.length; j++) {
+				distances[i][j] = distance(fsta[i].dna, fsta[j].dna);
 			}
-			
+			io.printer.printArray(distances[i]);
 		}
 	}
 }

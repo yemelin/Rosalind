@@ -1,34 +1,26 @@
 package simple;
-import java.nio.charset.Charset;
-import java.util.List;
 
-import rosaIO.FastaIO;
 import rosaIO.Fasta;
-import rosaIO.RosaIO;
 import rosaIO.Rstring;
+import rosaIO.Task;
 
 public class BS005_Gc {
 	public static void main(String[] args) {
-		List <String> ls;
-		Fasta [] fsta;
 		double gc, maxgc = 0.0f;
 		int maxfst=0;
 
-		if (args.length>0)
-			ls = RosaIO.readFileToList(args[0], Charset.defaultCharset());
-		else
-			ls = RosaIO.readInputToList();
-		
-		if ((fsta = FastaIO.listToFasta(ls))!=null) {
-			for (int i = 0; i < fsta.length; i++) {
-//				System.out.println(countGC(fsta[i].dna)+" "+fsta[i].label);
-				if ((gc = Rstring.countGC(fsta[i].dna))>maxgc) {
-					maxfst = i;
-					maxgc = gc;
-				}
+		Task io = new Task("gc", args);
+		Fasta [] fsta = io.scanner.readFastaArray();
+//	not extracting the following cycle to a method, because we need two
+//	return values: max value and the index
+		for (int i = 0; i < fsta.length; i++) {
+			if ((gc = Rstring.countGC(fsta[i].dna))>maxgc) {
+				maxfst = i;
+				maxgc = gc;
 			}
-			System.out.println(maxgc);
-			System.out.println(fsta[maxfst].label);
 		}
+		io.printer.println(maxgc);
+		io.printer.println(fsta[maxfst].label);
+		io.close();
 	}
 }

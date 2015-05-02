@@ -1,10 +1,7 @@
 package simple;
 
-import java.io.InputStream;
 import java.math.BigInteger;
-
-import rosaIO.RosaIO;
-import util.InOut;
+import rosaIO.Task;
 import util.MathStats;
 import util.Modulos;
 
@@ -35,13 +32,15 @@ public class BS045_Aspc {
 	}
 	
 	public static void main(String[] args) {
-		InputStream is = RosaIO.obtainInputStream(args);
-		int[] input = InOut.readInt(is, 2);
-		if (input!=null) {
-			int n = input[0];
-			int m = input[1]; 
+		Task io = new Task("aspc", args);
+		int n = io.scanner.readInt();
+		int m = io.scanner.readInt();
+		if (n>=m) {
 //			System.out.println(sumCombsBrute(n, m, n).mod(BigInteger.valueOf(1000000)));
-			System.out.println(sumCombsMod(n, m, n, Modulos.ROSAMODULO));
+			io.printer.println(sumCombsMod(n, m, n, Modulos.ROSAMODULO));
 		}
+		else
+			System.err.println("Input corrupted");
+		io.close();
 	}
 }

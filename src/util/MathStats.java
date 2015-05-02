@@ -36,7 +36,7 @@ public class MathStats {
 				multiply(no_p.pow(n-m)).doubleValue() ;
 	}
 //	binomial distribution function P(X<=m)
-	public static double distrib (double baseP, int m, int n) {
+	public static double binomDistrib (double baseP, int m, int n) {
 		double rt = 0.0;
 		for (int i=0; i<=m; i++) {
 			rt+=binProb(baseP, i, n);

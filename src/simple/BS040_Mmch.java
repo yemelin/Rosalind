@@ -3,7 +3,7 @@ package simple;
 import java.math.BigInteger;
 
 import rosaIO.Fasta;
-import rosaIO.FastaIO;
+import rosaIO.Task;
 import util.MathStats;
 import util.RosaArrays;
 
@@ -46,9 +46,10 @@ public class BS040_Mmch {
 	}
 	
 	public static void main(String[] args) {
-		Fasta[] fsta = FastaIO.obtainFastaArray(args, 1);
-		if (fsta!=null);
-			System.out.println(countMatchings(fsta[0].dna));
+		Task io = new Task("mmch", args);
+		Fasta[] fsta = io.scanner.readFastaArray();
+		io.printer.println(countMatchings(fsta[0].dna));
+		io.close();
 	}
 
 }

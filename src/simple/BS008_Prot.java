@@ -1,19 +1,12 @@
 package simple;
 
-import java.nio.charset.Charset;
-
-import rosaIO.RosaIO;
 import rosaIO.Rstring;
+import rosaIO.Task;
 
 public class BS008_Prot {
 	public static void main(String[] args) {
-		String s;
-		if (args.length>0)
-			s = RosaIO.readFile(args[0], Charset.defaultCharset());
-		else
-			s = RosaIO.readInput();
-		if (s!=null)
-			System.out.println(Rstring.rnaToProtein(s));
+		Task io = new Task("prot", args);
+		io.printer.println(Rstring.rnaToProtein(io.scanner.readLine()));
+		io.close();
 	}
-
 }

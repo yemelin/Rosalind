@@ -7,7 +7,7 @@ import java.math.BigInteger;
 import java.util.LinkedList;
 import java.util.List;
 
-import util.InOut;
+import rosaIO.Task;
 import util.MathStats;
 
 public class BS029_Sign {
@@ -72,25 +72,23 @@ public class BS029_Sign {
 	}
 
 	public static void main(String[] args) {
-		int a[] = InOut.readInt(1);
-		BigInteger perms = MathStats.factFall(0, a[0]);
-		BigInteger signs = BigInteger.valueOf(2).pow(a[0]);
-		if (a!=null) {
-			System.out.println(perms
-				.multiply(signs));
-		}
+		Task io = new Task("sign", args);
+		int n = io.scanner.readInt();
+		BigInteger perms = MathStats.factFall(0, n);
+		BigInteger signs = BigInteger.valueOf(2).pow(n);
+		System.out.println(perms.multiply(signs));
 //		for (BigInteger i= BigInteger.ZERO; i.compareTo(perms)<0; i.add(BigInteger.ONE) ) {
 //			
 //		}
-//		for (int i=0; i<smallFact(a[0]); i++)
-//			numToPerm(i, a[0]);
+//		for (int i=0; i<smallFact(n); i++)
+//			numToPerm(i, n);
 //		for (int i=0; i<8; i++)
 //			numToDigs(i, 2);
-		for (int i=0; i<smallFact(a[0]); i++) {
-			int [] p = numToPerm(i, a[0]);
+		for (int i=0; i<smallFact(n); i++) {
+			int [] p = numToPerm(i, n);
 //			printArray(p);
 //			System.out.println("----------------");
-			for (int j=0; j<pow2(a[0]); j++) {
+			for (int j=0; j<pow2(n); j++) {
 				addSigns(p, numToDigs(j, 2));
 				printArray(p);
 //				System.out.print(" ::: ");

@@ -1,5 +1,6 @@
 package simple;
-import java.util.Scanner;
+
+import rosaIO.Task;
 public class BS003_Revc {
 	private static final String pattern = "ACGT";
 	private static final char ptrn[] = {'A','C','G','T',};
@@ -28,22 +29,12 @@ public class BS003_Revc {
 		}
 		return ret;
 	}
-	public static void printArray(int a[]){
-		for (int i = 0; i < a.length; i++) {
-			System.out.print(a[i]);
-			if (i<a.length-1)
-				System.out.print(" ");
-		}
-		System.out.println();
-	}
 	
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		if (sc.hasNextLine()) {
-			String st = sc.nextLine();
-			printArray(countChars(st));
-			printArray(countCharsa(st.toCharArray()));
-		}
-		sc.close();
+		Task io = new Task ("revc", args);
+		String st = io.scanner.readLine();
+		io.printer.printArray(countChars(st));
+		io.printer.printArray(countCharsa(st.toCharArray()));
+		io.close();
 	}
 }

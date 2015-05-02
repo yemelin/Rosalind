@@ -1,37 +1,26 @@
 package bs032_Tree;
 //http://rosalind.info/problems/tree/
 //TODO: cleanup
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+//TODO: consider MatrixReader inner class for RosaScanner, that would read
+//arrays of arrays, like in this task
 import java.util.ArrayList;
-import java.util.Scanner;
-
-import rosaIO.RosaIO;
+import rosaIO.Task;
 
 public class BS032_Tree {
 
 	
-	public static void main(String[] args) throws IOException {
-		int size = 0;
-		InputStream is = new FileInputStream (new File(RosaIO.DATAPATH+args[0]));
-		System.out.println("Opened "+RosaIO.DATAPATH+args[0]);
-		ArrayList <int[]> edges = new ArrayList<int[]>();
-		Scanner sc = new Scanner(is);
-		size = sc.nextInt();
-		int i = 0;
+	public static void main(String[] args) {
+		Task io = new Task("tree", args);
+		int size = io.scanner.readInt();
+		System.out.println(size);
+		io.scanner.readLine();
+		ArrayList <int[]> edges = new ArrayList<int[]>();		
+		int tmp[];
 		do {
-			int [] tmp = new int[2];
-			for (i=0; i<2;i++)
-				if (sc.hasNextInt()) {
-					tmp[i] = sc.nextInt();
-				}
-				else break;
-			if (i==2) {
+			tmp = io.scanner.readLineToIntArray();
+			if (tmp.length==2)
 				edges.add(tmp);
-			}
-		} while (i==2);
+		} while (tmp.length==2 && (io.scanner.hasNextLine()));
 		System.out.println("Got input. Graph size: "+size);
 //		for (i=0; i<edges.size(); i++)
 //			RosaIO.printArray(edges.get(i));
@@ -50,5 +39,6 @@ public class BS032_Tree {
 //	connecting the subtrees, and connected graph is a tree when and only when
 //	Number_Of_Nodes = Number_Of_Edges+1
 		System.out.println("Edges required to form a tree: "+ (gi.getSize()-gi.getNumEdges()-1));
+		io.printer.println(gi.getSize()-gi.getNumEdges()-1);
 	}
 }
