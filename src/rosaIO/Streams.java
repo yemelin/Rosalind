@@ -27,12 +27,12 @@ public class Streams {
 
 	public static OutputStream obtainOutputStream (String[] args) {
 		OutputStream os=null;
-		if (args.length>0) {
+		if (args.length>1) {
 			try {
-				os = new FileOutputStream (new File(RosaIO.OUTPUTPATH+args[0]));
+				os = new FileOutputStream (new File(RosaIO.OUTPUTPATH+args[1]));
 			}
 			catch (FileNotFoundException e) {
-				System.out.println("Can't write to "+RosaIO.OUTPUTPATH+args[0]);
+				System.out.println("Can't write to "+RosaIO.OUTPUTPATH+args[1]);
 //				System.exit(1);
 			}
 		}

@@ -91,6 +91,9 @@ public class RosaPrinter extends PrintStream{
 	public void printArray(int[] a) {
 		printArray(new IntArrayPrinter(a));
 	}
+	public void printArray(int[] a, int start) {
+		printArray(new IntArrayPrinter(a), start, a.length-1);
+	}
 	public void printArray(double[] a) {
 		printArray(new DoubleArrayPrinter(a));
 	}

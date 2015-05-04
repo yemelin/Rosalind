@@ -3,7 +3,7 @@ package simple;
 import rosaIO.Rstring;
 import rosaIO.Task;
 
-public class BS052_Spec {
+public class BS053_Spec {
 	public static void main(String[] args) {
 		Task io = new Task("seto", args);
 		Rstring.loadMassTable();

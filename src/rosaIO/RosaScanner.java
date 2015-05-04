@@ -9,7 +9,7 @@ package rosaIO;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
+//import java.util.List;
 import java.util.Scanner;
 
 public class RosaScanner {
@@ -34,8 +34,8 @@ public class RosaScanner {
 			Error.perrorExit();
 		return sc.nextLine();
 	}
-	public List <String> readList() {
-		List <String> ls = new ArrayList <String>();
+	public ArrayList <String> readList() {
+		ArrayList <String> ls = new ArrayList <String>();
 		while (sc.hasNextLine())
 			ls.add(sc.nextLine());
 		if (ls.size()==0)
