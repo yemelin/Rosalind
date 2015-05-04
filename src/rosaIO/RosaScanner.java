@@ -56,6 +56,12 @@ public class RosaScanner {
 			Error.perrorExit();
 		return sc.nextInt();
 	}
+
+	public double readDouble() {
+		if (!sc.hasNextDouble())
+			Error.perrorExit();
+		return sc.nextDouble();
+	}
 	
 	public int[] readLineToIntArray() {
 		return new RosaScanner(this.readLine()).readIntArray();

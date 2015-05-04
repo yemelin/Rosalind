@@ -1,12 +1,6 @@
 package simple;
 //http://rosalind.info/problems/rstr/
-
-import java.io.InputStream;
-
-
-// TODO: fix input. Finally, write a function for obtaining a stream.
 import rosaIO.Rstring;
-import rosaIO.Streams;
 import rosaIO.Task;
 
 public class BS043_Rstr {
@@ -14,7 +8,7 @@ public class BS043_Rstr {
 	public static void main(String[] args) {
 		Task io = new Task("rstr", args);
 		int n=io.scanner.readInt();
-//	TODO: add readDouble() to RosaScanner
+
 		double gc=io.scanner.readDouble();
 		String dna=io.scanner.readLine();
 		if (n<=0 || gc<=0.0)
