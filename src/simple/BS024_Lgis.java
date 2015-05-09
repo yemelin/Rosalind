@@ -1,6 +1,5 @@
 package simple;
 
-import rosaIO.RosaIO;
 import rosaIO.Task;
 import util.RosaArrays;
 
@@ -11,8 +10,8 @@ public class BS024_Lgis {
 		int n = io.scanner.readInt();
 		int a[] = io.scanner.readIntArray();
 		if (a.length==n) {
-			RosaIO.printArray(RosaArrays.longestSeq(a, true));	//increasing
-			RosaIO.printArray(RosaArrays.longestSeq(a, false));	//decreasing
+			io.printer.printArray(RosaArrays.longestSeq(a, true));	//increasing
+			io.printer.printArray(RosaArrays.longestSeq(a, false));	//decreasing
 		}
 		else
 			System.out.println("Input corrupted");

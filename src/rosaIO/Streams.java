@@ -13,10 +13,10 @@ public class Streams {
 			InputStream is=null;
 			if (args.length>0) {
 				try {
-					is = new FileInputStream (new File(RosaIO.DATAPATH+args[0]));
+					is = new FileInputStream (new File(Streams.DATAPATH+args[0]));
 				}
 				catch (FileNotFoundException e) {
-					System.out.println(RosaIO.DATAPATH+args[0]+ "not found");
+					System.out.println(Streams.DATAPATH+args[0]+ "not found");
 	//				System.exit(1);
 				}
 			}
@@ -29,10 +29,10 @@ public class Streams {
 		OutputStream os=null;
 		if (args.length>1) {
 			try {
-				os = new FileOutputStream (new File(RosaIO.OUTPUTPATH+args[1]));
+				os = new FileOutputStream (new File(Streams.OUTPUTPATH+args[1]));
 			}
 			catch (FileNotFoundException e) {
-				System.out.println("Can't write to "+RosaIO.OUTPUTPATH+args[1]);
+				System.out.println("Can't write to "+Streams.OUTPUTPATH+args[1]);
 //				System.exit(1);
 			}
 		}
@@ -40,5 +40,10 @@ public class Streams {
 			os = System.out;
 		return os;
 	}
+
+	//	public static String DATAPATH = "/home/geovvy/workspace/Rosalind/data/";
+	public static final String DATAPATH = "/home/vvy/git/rosalind/data/";
+	public static final String TABLEPATH = "/home/vvy/git/rosalind/tables/";
+	public static final String OUTPUTPATH = "/home/vvy/git/rosalind/output/";
 
 }

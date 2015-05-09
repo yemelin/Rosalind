@@ -1,6 +1,10 @@
 package rosaIO;
 
+import java.io.IOException;
 import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 //import java.util.Iterator;
 import java.util.List;
@@ -112,9 +116,27 @@ public class Rstring {
 //	two arrays to something appropriate (like a dictionary)
 	private static String keys;
 	private static double masses[];
+	
+// TODO: this a code copied from obsolete IO libs, use RosaScanner instead or
+// find other way to handle input uniformly 
+	private static List<String> readFileToList (String path, Charset encoding){
+//		System.out.println("trying to read "+path);
+//		Path filePath = new File(path).toPath(); 
+		Path filePath = Paths.get(path);
+		List<String> stringList = null;
+		try {
+			stringList = Files.readAllLines(filePath, encoding);
+		} catch (IOException e) {
+			System.out.println("cant'read");
+			return null;
+//			e.printStackTrace();
+		}
+		return stringList;
+	}
+
 	public static void loadMassTable(){
-		String path = RosaIO.TABLEPATH + "monoisotopic_masses.txt";
-		List<String> table = RosaIO.readFileToList(path, Charset.defaultCharset());
+		String path = Streams.TABLEPATH + "monoisotopic_masses.txt";
+		List<String> table = readFileToList(path, Charset.defaultCharset());
 		StringBuffer sb = new StringBuffer(table.size());
 		sb.setLength(table.size());
 		masses = new double[table.size()];

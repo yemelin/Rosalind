@@ -1,31 +1,34 @@
-package rosaIO;
+package obsoleteCode;
 
 
 import java.nio.charset.Charset;
 import java.util.LinkedList;
 import java.util.List;
 
+import rosaIO.Fasta;
+import rosaIO.Streams;
 
-public class FastaIO {
+
+public class FastaIO_obsolete {
 	public static LinkedList<Fasta> fileToFastaList(String path) {
-		return Fasta.listToFastaList(RosaIO.readFileToList(path, Charset.defaultCharset()));
+		return Fasta.listToFastaList(RosaIO_obsolete.readFileToList(path, Charset.defaultCharset()));
 	}
 	public static LinkedList<Fasta> inputToFastaList() {
-		return Fasta.listToFastaList(RosaIO.readInputToList());
+		return Fasta.listToFastaList(RosaIO_obsolete.readInputToList());
 	}
 	public static Fasta[] fileToFastaArray(String path) {
-		return FastaIO.listToFasta(RosaIO.readFileToList(path, Charset.defaultCharset()));
+		return listToFasta(RosaIO_obsolete.readFileToList(path, Charset.defaultCharset()));
 	}
 	public static Fasta[] inputToFastaArray() {
-		return FastaIO.listToFasta(RosaIO.readInputToList());
+		return listToFasta(RosaIO_obsolete.readInputToList());
 	}
 // automatic choice between file (from args[0]) and terminal	
 	public static Fasta[] obtainFastaArray(String[]args, int requiredLength) {
 		Fasta[] fsta;
 		if (args.length>0)
-			fsta = FastaIO.fileToFastaArray(RosaIO.DATAPATH+args[0]);
+			fsta = fileToFastaArray(Streams.DATAPATH+args[0]);
 		else
-			fsta = FastaIO.inputToFastaArray();
+			fsta = inputToFastaArray();
 		if (fsta==null || fsta.length<requiredLength) {
 			prepareToExit();
 			System.exit(1);

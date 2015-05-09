@@ -1,4 +1,4 @@
-package rosaIO;
+package obsoleteCode;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -9,13 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class RosaIO {
-//	public static String DATAPATH = "/home/geovvy/workspace/Rosalind/data/";
-	public static final String DATAPATH = "/home/vvy/git/rosalind/data/";
-	public static final String TABLEPATH = "/home/vvy/git/rosalind/tables/";
-	public static final String fname ="rosalind_cons2.txt";
-	public static final String OUTPUTPATH = "/home/vvy/git/rosalind/output/";
-//	copy-pasted from http://stackoverflow.com/questions/326390/
+import rosaIO.Streams;
+
+public class RosaIO_obsolete {
+public static final String fname ="rosalind_cons2.txt";
+	//	copy-pasted from http://stackoverflow.com/questions/326390/
 	public static String readFile(String path, Charset encoding) {
 		byte[] encoded;
 		try {
@@ -64,10 +62,10 @@ public class RosaIO {
 	public static String getAllInput(String args[]) {
 		String s;
 		if ((args.length>0) && 
-			(s = RosaIO.readFile(args[0], Charset.defaultCharset()))!=null)
+			(s = readFile(args[0], Charset.defaultCharset()))!=null)
 			;
 		else  
-			s = RosaIO.readInput();
+			s = readInput();
 		return (s=="") ? null:s;
 
 	}
@@ -76,7 +74,7 @@ public class RosaIO {
 		if (args.length==0)
 			ls = readInputToList();
 		else
-			ls = readFileToList(RosaIO.DATAPATH+args[0], Charset.defaultCharset());
+			ls = readFileToList(Streams.DATAPATH+args[0], Charset.defaultCharset());
 		return ls;
 	}
 	public static void printArray (int a[]) {
