@@ -30,7 +30,7 @@ public class RosaScanner {
 	}
 //	accepts empty lines!
 	public String readLine() {
-		if (!sc.hasNext())
+		if (!sc.hasNextLine())
 			Error.perrorExit();
 		return sc.nextLine();
 	}
