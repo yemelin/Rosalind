@@ -4,6 +4,8 @@ package bs042_Rear;
 // TODO: try to implement Breadth-first search algorithms and overcome the 
 // memory and complexity issues, rather than using N top reversal that minimize
 // breakpoints number (which seems however almost a guarantee)
+// TODO: move reversing routine classes to libraries, so that problems 42 and
+// 43 could be split without repeating the code
 import java.util.ArrayList;
 
 import rosaIO.Task;
@@ -36,5 +38,15 @@ public class BS042_Rear {
 			output[i++] = Reversal.countReversals(pair.from, pair.to);
 		}
 		io.printer.printArray(output);
+//	this is for Problem 43, the actual list of reversals
+		ArrayList<BrokenReversal> brl = Reversal.sortingReversals();
+		for (i=brl.size()-2; i>=0; i--) {
+			try {
+				io.printer.printArray(brl.get(i).revPoints);
+			}
+			catch (NullPointerException npe) {
+				System.out.println(brl.get(i).revPoints);
+			}
+		}
 	}
 }

@@ -12,6 +12,17 @@ public class BrokenReversal {
 //		System.out.println(Arrays.toString(breaks));
 	}
 	int bpc;
+	public BrokenReversal prevBr;
+	public BrokenReversal(BrokenReversal br, int i, int j) {
+		this(br.perm, i, j);
+		prevBr = br;
+		revPoints = new int[2];
+		revPoints[0] = i+1;//1-based numbering
+		revPoints[1] = j;  //j is a breakPoint position which is equal to
+			//	the last strand's element's position in 1-based numbering
+	}
+	public int[] revPoints;
+	
 	@Override
 	public boolean equals (Object br) {
 //		System.out.println("equals");

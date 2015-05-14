@@ -1,6 +1,7 @@
 package bs042_Rear;
 
 import java.util.ArrayList;
+
 import util.RosaArrays;
 
 public class Reversal {
@@ -26,7 +27,7 @@ public class Reversal {
 	}
 	
 	
-	
+	public static BrokenReversal lastBr;
 	
 	public static int countReversals (int[] from, int[] to) {
 //		Scanner sc = new Scanner(System.in);
@@ -49,7 +50,7 @@ public class Reversal {
 				for (int i=0; i<br.breaks.length-1; i++)
 					for (int j=i+1; j<br.breaks.length; j++) {
 						if (br.breaks[j]-br.breaks[i]>1) {
-							tmpbr = new BrokenReversal(br.perm, br.breaks[i], br.breaks[j]);
+							tmpbr = new BrokenReversal(br, br.breaks[i], br.breaks[j]);
 //							if (!next.contains(tmpbr = new BrokenReversal(br.perm, br.breaks[i], br.breaks[j])))
 							if (tmpbr.breaks.length<minBreaks) {
 								minBreaks = tmpbr.breaks.length;
@@ -68,8 +69,19 @@ public class Reversal {
 			brevs = next;
 		}
 //		System.out.println(depth);
+		lastBr = tmpbr;
 		return depth;
 	}
+	public static ArrayList<BrokenReversal> sortingReversals() {
+		ArrayList<BrokenReversal> brl = new ArrayList<>();
+		BrokenReversal tmpBr = lastBr;
+		brl.add(lastBr);
+		while (tmpBr.prevBr!=null) {
+			brl.add(tmpBr = tmpBr.prevBr);
+		}
+		return brl;
+	}
+
 	static class PermPair {
 		int[] from;
 		int[] to;
