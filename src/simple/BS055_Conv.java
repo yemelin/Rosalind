@@ -4,7 +4,7 @@ import rosaIO.RosaScanner;
 import rosaIO.Task;
 import static util.MultiSets.*;
 
-public class BS054_conv {
+public class BS055_Conv {
 
 	public static void main(String[] args) {
 		Task io = new Task("conv", args);
