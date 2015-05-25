@@ -1,5 +1,5 @@
 package util;
-
+// TODO: get rid of all printArray, it is handled by RosaPrinter class
 public class RosaArrays {
 	public static int max(int a, int b) {
 		return (a>b)? a:b;					
@@ -49,6 +49,7 @@ public class RosaArrays {
 	}
 
 //	Wagner-Fischer
+	public static int[][] tbl; //DEBUG
 	public static int editDistance (String s1, String s2) {
 //		System.out.println("Edit distance between "+s1);
 //		System.out.println(s2);
@@ -64,12 +65,13 @@ public class RosaArrays {
 					if	(table[i][j-1] < table[i][j])
 						table[i][j] = table[i][j-1]; //ins
 					if (table[i-1][j]< table[i][j])
-						table[i][j] = table[i-1][j]; //subst
-													//i-1,j-1 is min -> del
+						table[i][j] = table[i-1][j]; //del
+													//i-1,j-1 is min -> subst
 					table[i][j]++;	//+1 edit operation
 				}
 			}
 		}
+		tbl = table;//DEBUG
 		return table[s1.length()][s2.length()];
 	}
 //	longest common subsequence

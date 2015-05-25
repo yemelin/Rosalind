@@ -22,7 +22,7 @@ public class Rstring {
 	public final static String DNALETTERS = "ACGT";
 	public static final String STOPCODONS[] = {"UAA", "UAG", "UGA"};
 	public static final String STARTCODON = "AUG";
-	
+	public static final double PRECISION = 0.0001;
 	
 	public static int countChars(String s, char c) {
 		int n=0;

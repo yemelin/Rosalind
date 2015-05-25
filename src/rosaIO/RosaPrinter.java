@@ -46,7 +46,8 @@ public class RosaPrinter extends PrintStream{
 		}
 		@Override
 		final void print(int i) {
-			ps.print(_a[i]);
+//			ps.print(_a[i]);
+			ps.printf("%.5f",_a[i]);
 		}
 	}
 	private class SetPrinter extends IntArrayPrinter {
@@ -96,6 +97,9 @@ public class RosaPrinter extends PrintStream{
 	}
 	public void printArray(double[] a) {
 		printArray(new DoubleArrayPrinter(a));
+	}
+	public void printArray(double[] a, int start) {
+		printArray(new DoubleArrayPrinter(a), start, a.length-1);
 	}
 	public void printArray(Fasta[] a) {
 		printArray(new FastaArrayPrinter(a));
