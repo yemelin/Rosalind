@@ -3,7 +3,7 @@ package simple;
 import rosaIO.Task;
 import util.Fib;
 
-public class BS010_Fibd {
+public class BS011_Fibd {
 	public static void main(String[] args) {
 		Task io = new Task("fibd",args);
 		int n = io.scanner.readInt();

@@ -1,4 +1,4 @@
-package lia_14;
+package bs015_Lia;
 
 import rosaIO.Task;
 import util.MathStats;
@@ -7,7 +7,7 @@ import util.MathStats;
 //Probability of N-th generation having >=m AaBb is probability of NOT
 //having <m, which is in turn the sum of probabilities of having 1, 2... m-1,
 //which is exactly the Binomial distribution function
-public class Lia {
+public class BS015_Lia {
 	private final static double prob_AaBb = 0.25; //0.5*0.5, baseP
 	public static void main(String[] args) {
 		Task io = new Task("lia", args);
