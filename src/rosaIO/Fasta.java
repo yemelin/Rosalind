@@ -8,12 +8,12 @@ public class Fasta {
 	public String desc;
 	public String dna;
 	public static LinkedList<Fasta> listToFastaList (List <String> ls){
-			if (ls==null)
+			if (ls==null || ls.size()==0)
 				return null;
 			LinkedList <Fasta> lf = new LinkedList<Fasta>();
 			Fasta fst=null;
 			StringBuffer sb= new StringBuffer();
-			for (int i=0; i<ls.size(); i++) {
+			for (int i=0; i<ls.size() && ls.get(i).length()!=0; i++) {
 				if (ls.get(i).charAt(0)=='>') {
 					if (fst!=null)
 						fst.dna = sb.toString();
