@@ -14,8 +14,8 @@ public class Streams {
 	
 //	public static final String DATAPATH = "/home/vvy/git/rosalind/data/";
 	public static final String DATAPATH = "./data/";
-	public static final String TABLEPATH = "/home/vvy/git/rosalind/tables/";
-	public static final String OUTPUTPATH = "/home/vvy/git/rosalind/output/";
+	public static final String TABLEPATH = "./tables/";
+	public static final String OUTPUTPATH = "./output/";
 
 	public static InputStream obtainInputStream (String inputPath) {
 			InputStream is=null;
