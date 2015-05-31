@@ -1,11 +1,10 @@
 package simple;
-//import java.util.Iterator;
-//import java.nio.charset.Charset;
+//http://rosalind.info/problems/orf/
 import java.util.TreeSet;
 
 import rosaIO.Fasta;
-import rosaIO.Rstring;
 import rosaIO.Task;
+import util.Rstring;
 public class BS018_Orf {
 	public static String[] findAllProts (String dna, TreeSet<String> set) {
 		int start = 0;
@@ -15,10 +14,10 @@ public class BS018_Orf {
 		while ((start = sb.indexOf(Rstring.STARTCODON, start))!=-1) {			
 			nextprot = Rstring.rnaToProtein(sb.substring(start));
 //check if there is STOP in the end or just the end of the string
-//TODO: it seems the following check is either unneeded or wrong
-			if (nextprot.length()==(sb.length()-start)/3) //WTF?
+//STOP is not included to protein string, but the corresponding rna has it
+			if (nextprot.length()==(sb.length()-start)/3)
 				break;
-//			System.out.println(nextprot);
+
 			set.add(nextprot);
 			start+=3;
 		}

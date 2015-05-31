@@ -38,15 +38,5 @@ public class BS042_Rear {
 			output[i++] = Reversal.countReversals(pair.from, pair.to);
 		}
 		io.printer.printArray(output);
-//	this is for Problem 43, the actual list of reversals
-		ArrayList<BrokenReversal> brl = Reversal.sortingReversals();
-		for (i=brl.size()-2; i>=0; i--) {
-			try {
-				io.printer.printArray(brl.get(i).revPoints);
-			}
-			catch (NullPointerException npe) {
-				System.out.println(brl.get(i).revPoints);
-			}
-		}
 	}
 }

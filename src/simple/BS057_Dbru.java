@@ -5,8 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import rosaIO.Rstring;
 import rosaIO.Task;
+import util.Rstring;
 
 public class BS057_Dbru {
 	public static void printEdges (Set<String> edges, PrintStream ps) {

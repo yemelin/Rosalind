@@ -1,4 +1,4 @@
-package util;
+package obsoleteCode;
 import java.io.InputStream;
 import java.util.Scanner;
 public class InOut {
@@ -21,6 +21,7 @@ public class InOut {
 //		return a;
 	}
 	
+	@SuppressWarnings("resource")
 	public static int[] readInt (InputStream is, int n){
 		int a[] = new int[n];
 		Scanner sc = new Scanner(is);
@@ -39,6 +40,8 @@ public class InOut {
 	public static double[] readDouble (int n) {
 		return readDouble(System.in, n);
 	}
+
+	@SuppressWarnings("resource")
 	public static double[] readDouble (InputStream is, int n) {
 		double a[] = new double[n];
 		Scanner sc = new Scanner(is);

@@ -1,18 +1,19 @@
-/* http://rosalind.info/problems/perm/
- * Task 19
- */
+// http://rosalind.info/problems/perm/
+ 
 package simple;
-
+//TODO: swap() for int array should definitely be in some library
 import rosaIO.RosaPrinter;
 import rosaIO.Task;
 import util.MathStats;
 public class BS019_Perm {
-	public static void swap(int a[], int m, int k) {
+	private static void swap(int a[], int m, int k) {
 		int d = a[m];
 		a[m] = a[k];
 		a[k] = d;
 	}
-	public static int[] range (int m, int n) {
+	
+//	returns an array filled with ints from m to n
+	private static int[] range (int m, int n) {
 		int a[] = new int[n-m+1]; 
 		for (int i = m; i <= a.length; i++) {
 			a[i-m] = i;

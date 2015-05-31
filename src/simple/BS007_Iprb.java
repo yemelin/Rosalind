@@ -1,3 +1,4 @@
+//http://rosalind.info/problems/iprb/
 package simple;
 
 /*
@@ -35,7 +36,7 @@ public class BS007_Iprb {
 		Task io = new Task("iprb", args);
 		int nums[] = io.scanner.readIntArray();
 		if (nums.length>=3)
-			System.out.println(probDominant(nums[AA], nums[Aa], nums[aa]));
+			io.printer.println(probDominant(nums[AA], nums[Aa], nums[aa]));
 		io.close();
 	}
 }

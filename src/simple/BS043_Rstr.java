@@ -1,7 +1,7 @@
-package simple;
 //http://rosalind.info/problems/rstr/
-import rosaIO.Rstring;
+package simple;
 import rosaIO.Task;
+import util.Rstring;
 
 public class BS043_Rstr {
 

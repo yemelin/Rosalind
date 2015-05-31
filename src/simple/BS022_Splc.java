@@ -1,8 +1,8 @@
-package simple;
 //http://rosalind.info/problems/splc/
+package simple;
 import rosaIO.Fasta;
-import rosaIO.Rstring;
 import rosaIO.Task;
+import util.Rstring;
 //TODO: split removing introns and protein translation
 public class BS022_Splc {
 //	Remove all introns one by one. Based on the assumption that the solution is

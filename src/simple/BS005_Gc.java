@@ -1,8 +1,9 @@
+//http://rosalind.info/problems/gc/
 package simple;
 
 import rosaIO.Fasta;
-import rosaIO.Rstring;
 import rosaIO.Task;
+import util.Rstring;
 
 public class BS005_Gc {
 	public static void main(String[] args) {

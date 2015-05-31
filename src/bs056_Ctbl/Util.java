@@ -6,7 +6,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
-
+// an auxiliary class for comparison of the content of two classes with 
+// arbitrary order of desirably the same set of strings
+// Not used in the task
 public class Util {
 
 	public static List<String> readFileToList (String path, Charset encoding){

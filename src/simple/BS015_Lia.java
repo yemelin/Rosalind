@@ -1,4 +1,4 @@
-package bs015_Lia;
+package simple;
 
 import rosaIO.Task;
 import util.MathStats;

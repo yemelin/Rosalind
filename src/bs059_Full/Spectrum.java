@@ -1,7 +1,5 @@
 package bs059_Full;
 
-import rosaIO.Rstring;
-
 public class Spectrum {
 	Part[] parts;
 	double[] weights;

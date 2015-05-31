@@ -1,6 +1,6 @@
+//http://rosalind.info/problems/sset/
 package simple;
 
-//http://rosalind.info/problems/sset/
 // number of subsets  - just 2^N. Simplest explanation:
 //{a1,a2,a3,...,an}   - elements
 //  1, 0, 1, ... 1    - included to subset or not

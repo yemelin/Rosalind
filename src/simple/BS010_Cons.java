@@ -1,17 +1,19 @@
+//http://rosalind.info/problems/cons/
 package simple;
 
+//TODO: move consensus to libraries
 import java.util.HashMap;
 import java.util.Map;
 
 import rosaIO.Fasta;
 import rosaIO.RosaPrinter;
-import rosaIO.Rstring;
 import rosaIO.Task;
+import util.Rstring;
 
 public class BS010_Cons {
 	
 	@SuppressWarnings("serial")
-	public static Map<Character, int[]> newProfileMap(int len) {
+	private static Map<Character, int[]> newProfileMap(int len) {
 //	return anonymous class with instance initializer
 		return new HashMap<Character, int[]>(){{
 			for (int i=0; i<Rstring.DNALETTERS.length(); i++)
@@ -19,7 +21,7 @@ public class BS010_Cons {
 		}};
 	}
 	
-	public static Map<Character, int[]> buildProfile (Fasta[] fsta) {
+	private static Map<Character, int[]> buildProfile (Fasta[] fsta) {
 		int len = fsta[0].dna.length();
 		Map<Character, int[]> profile = newProfileMap(len);
 		for (int i=0; i<fsta.length; i++)

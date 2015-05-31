@@ -1,9 +1,11 @@
+//http://rosalind.info/problems/mrna/
 package simple;
 
-import rosaIO.Rstring;
-import rosaIO.Task;
+import java.util.Arrays;
 
-//http://rosalind.info/problems/mrna/
+import rosaIO.Task;
+import util.Rstring;
+
 
 public class BS017_Mrna {
 	private static String stops[] = Rstring.protLetterToRnaTriplets('Z');
@@ -19,12 +21,10 @@ public class BS017_Mrna {
 		}
 		return true;
 	}
-	public static long mycount (String p) {
+	public static long countProteinRnaTranslations (String p) {
 		String states[] = Rstring.protLetterToRnaTriplets(p.charAt(0));
 		long counts[] = new long[states.length];
-//	TODO: probably, use Arrays.fillArray() here
-		for (int i=0; i<states.length;i++)
-			counts[i]=1;
+		Arrays.fill(counts, 1); // memset :)
 		String newstates[]=null;
 		long newcounts[]=null;
 		for (int i = 1; i<p.length(); i++) {
@@ -47,12 +47,12 @@ public class BS017_Mrna {
 		long ret=0l;
 		for (int i=0; i<newcounts.length; i++)
 			ret+= newcounts[i];
-		return (ret*3)%1000000;
+		return (ret*3)%1000000; //ret*3 because one prot consists of 3 RNAs
 	}
 	public static void main(String[] args) {
 		Task io = new Task("mrna",args);
 		String s = io.scanner.readLine();
-		io.printer.println(mycount(s));
+		io.printer.println(countProteinRnaTranslations(s));
 		io.close();
 	}
 }

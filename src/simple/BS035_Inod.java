@@ -1,8 +1,8 @@
+// http://rosalind.info/problems/inod/
 package simple;
 
 import rosaIO.Task;
 
-// http://rosalind.info/problems/inod/
 public class BS035_Inod {
 	public static void main(String[] args) {
 		Task io = new Task("inod", args);

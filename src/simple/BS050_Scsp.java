@@ -1,3 +1,4 @@
+//http://rosalind.info/problems/scsp/
 package simple;
 
 import rosaIO.Task;
@@ -25,8 +26,6 @@ public class BS050_Scsp {
 	
 	public static void main(String[] args) {
 		Task io = new Task("scsp", args);
-//		String s1 = "ATCTGAT";
-//		String s2 = "TGCATA";
 		String s1 = io.scanner.readLine();
 		String s2 = io.scanner.readLine();
 		io.printer.println(RosaArrays.lcs(s1, s2));

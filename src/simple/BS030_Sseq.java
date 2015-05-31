@@ -1,10 +1,10 @@
+// http://rosalind.info/problems/sseq/
 package simple;
 
 import rosaIO.Fasta;
 import rosaIO.Task;
 
 
-// http://rosalind.info/problems/sseq/
 public class BS030_Sseq {
 	public static int [] subSeqIndices (String s, String seq) {
 		int [] a = new int[seq.length()];

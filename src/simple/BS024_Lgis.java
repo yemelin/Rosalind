@@ -1,3 +1,4 @@
+//http://rosalind.info/problems/lgis/
 package simple;
 
 import rosaIO.Task;
@@ -14,7 +15,7 @@ public class BS024_Lgis {
 			io.printer.printArray(RosaArrays.longestSeq(a, false));	//decreasing
 		}
 		else
-			System.out.println("Input corrupted");
+			System.err.println("Input corrupted");
 		io.close();
 	}
 }

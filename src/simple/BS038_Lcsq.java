@@ -1,10 +1,12 @@
+//http://rosalind.info/problems/lcsq/
 package simple;
 
 import rosaIO.Fasta;
-import rosaIO.Rstring;
 import rosaIO.Task;
 import util.RosaArrays;
-
+import util.Rstring;
+// TODO: encoding Strings and sequences to numbers and back is not the first
+// time used here and should be moved to libraries
 public class BS038_Lcsq {
 	public static int[] stringToDigs (String s, String alph) {
 		int a[] = new int[s.length()];
@@ -30,7 +32,6 @@ public class BS038_Lcsq {
 			io.printer.println(digsToString(RosaArrays.lcs (a1,a2), Rstring.DNALETTERS));
 		}
 		else System.err.println("Input corrupted");
-//		char c = lcs (fsta[0].dna.toCharArray(), fsta[0].dna.toCharArray());
 		io.close();
 	}
 

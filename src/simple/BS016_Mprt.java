@@ -1,5 +1,5 @@
+//http://rosalind.info/problems/mprt/
 package simple;
-
 import java.io.InputStream;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -11,7 +11,8 @@ import rosaIO.Streams;
 import rosaIO.Task;
 
 public class BS016_Mprt {
-	public static final String uniprot_url = "http://www.uniprot.org/uniprot/";
+	
+// glycosylation pattern N{P}[ST]{P} rewritten to regexp
 	public static Pattern glyco_re = Pattern.compile("N[^P][ST][^P]");
 	
 	public static Fasta readProtFromUniprot (String label) {

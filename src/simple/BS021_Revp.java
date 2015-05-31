@@ -1,9 +1,10 @@
+//http://rosalind.info/problems/revp/
 package simple;
 
 import rosaIO.Fasta;
 import rosaIO.RosaPrinter;
-import rosaIO.Rstring;
 import rosaIO.Task;
+import util.Rstring;
 
 public class BS021_Revp {
 	private static final int MIN = 4;  //min palindrome length

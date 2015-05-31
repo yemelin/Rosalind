@@ -1,5 +1,9 @@
 package util;
-// TODO: get rid of all printArray, it is handled by RosaPrinter class
+
+import java.util.ArrayList;
+import java.util.List;
+
+
 public class RosaArrays {
 	public static int max(int a, int b) {
 		return (a>b)? a:b;					
@@ -14,42 +18,12 @@ public class RosaArrays {
 			swap(a, i, a.length-i-1); 
 	}
 	
-	public static void printArray(int a[], int start, int end) {
-		if (end<a.length) {
-			for (int i = start; i < end+1; i++) {
-				System.out.print(a[i]);
-				if (i<a.length-1)
-					System.out.print(" ");
-			}
-			System.out.println();
-		}
-	}
-	public static void printArray(int a[], int start) {
-		printArray(a,start,a.length-1);
-	}
-	public static void printArray(int a[]) {
-		printArray(a,0,a.length-1);
-	}
-//	TODO: can I print any array of primitive type with the same function?
-	public static void printArray(double a[], int start, int end) {
-		if (end<a.length) {
-			for (int i = start; i < end+1; i++) {
-				System.out.printf("%.5f",a[i]);
-				if (i<a.length-1)
-					System.out.print(" ");
-			}
-			System.out.println();
-		}
-	}
-	public static void printArray(double a[], int start) {
-		printArray(a,start,a.length-1);
-	}
-	public static void printArray(double a[]) {
-		printArray(a,0,a.length-1);
-	}
-
 //	Wagner-Fischer
-	public static int[][] tbl; //DEBUG
+//The global var tbl is a temporary hack. Table is a result of editDistance
+//work. Either editDistance should return the table, and distance will be
+//simply it's left lower corner value, or an Object holding
+//both a table and a distance
+	public static int[][] tbl; //TODO: get rid of this global var!!!
 	public static int editDistance (String s1, String s2) {
 //		System.out.println("Edit distance between "+s1);
 //		System.out.println(s2);
@@ -74,6 +48,39 @@ public class RosaArrays {
 		tbl = table;//DEBUG
 		return table[s1.length()][s2.length()];
 	}
+	public static final int INS = 1;
+	public static final int SUBST = 2;
+	public static final int DEL = 3;
+
+	public static List<Integer> traceBack (int[][] table) {
+		List<Integer> ret = new ArrayList<>();
+		int edit = 0;
+		int i,j; 
+		for (i=table.length-1, j=table[0].length-1; table[i][j]!=0;) {
+			System.out.println(i+" "+j);
+			if (table[i][j]>table[i-1][j]) {
+				i--;
+				edit = DEL;
+			}
+			else if (table[i][j]>table[i][j-1]) {
+				edit = INS;
+				j--;
+			}
+			else if (table[i][j]>table[i-1][j-1]) {
+				edit = SUBST;
+				i--; j--;
+			}
+			else {
+				edit = 0;
+				i--; j--;
+			}
+			ret.add(edit);
+		}
+		while (--i>=0)
+			ret.add(0);
+		return ret;
+	}
+//-----------------------------------
 //	longest common subsequence
 //	TODO: generalize it. Array should be passed as a plain object and
 //	there should be some comparator class, or some adapter classes should be
@@ -131,22 +138,22 @@ public class RosaArrays {
 	}
 	
 	
-//	TODO: add backtracking the subsequence
-	public static Object[] lcs (Object a[], Object b[]) {
-		int table[][] = new int[a.length+1][b.length+1];
-		for (int i = 1; i <= a.length; i++) {
-			for (int j = 1; j<=b.length; j++) {
-				if (a[i-1].equals(b[j-1])) {
-					table[i][j] = table[i-1][j-1]+1;
-				}
-				else
-					table[i][j] = max(table[i-1][j], table[i][j-1]);
-			}
-		}
-//		change length of the output array
-		Object ret2[] = new Object[ table[a.length][b.length] ];
-		return ret2;
-	}
+////	TODO: add backtracking the subsequence
+//	public static Object[] lcs (Object a[], Object b[]) {
+//		int table[][] = new int[a.length+1][b.length+1];
+//		for (int i = 1; i <= a.length; i++) {
+//			for (int j = 1; j<=b.length; j++) {
+//				if (a[i-1].equals(b[j-1])) {
+//					table[i][j] = table[i-1][j-1]+1;
+//				}
+//				else
+//					table[i][j] = max(table[i-1][j], table[i][j-1]);
+//			}
+//		}
+////		change length of the output array
+//		Object ret2[] = new Object[ table[a.length][b.length] ];
+//		return ret2;
+//	}
 	
 	@Deprecated
 //	uses the fact that arrays longest increasing subsequence is its common subsequence

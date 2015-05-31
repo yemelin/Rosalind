@@ -1,15 +1,15 @@
+//http://rosalind.info/problems/ham/
 package simple;
 
-import java.util.List;
-
-import rosaIO.Rstring;
 import rosaIO.Task;
+import util.Rstring;
 
 public class BS006_Ham {
 	public static void main(String[] args) {
 		Task io = new Task("ham", args);
-		List <String> ls = io.scanner.readList();
-		System.out.println(Rstring.hamming(ls.get(0), ls.get(1)));
+		String s1 = io.scanner.readLine();
+		String s2 = io.scanner.readLine();
+		io.printer.println(Rstring.hamming(s1, s2));
 		io.close();
 	}
 }

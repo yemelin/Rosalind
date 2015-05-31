@@ -1,8 +1,9 @@
+//http://rosalind.info/problems/seto/
 package simple;
 
 import rosaIO.Task;
 import util.Sets;
-// TODO: it's high time to organize normal file output!!! 
+
 public class BS051_Seto {
 
 	public static void main(String[] args) {

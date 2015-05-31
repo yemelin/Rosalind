@@ -1,7 +1,8 @@
+//http://rosalind.info/problems/prot/
 package simple;
 
-import rosaIO.Rstring;
 import rosaIO.Task;
+import util.Rstring;
 
 public class BS008_Prot {
 	public static void main(String[] args) {

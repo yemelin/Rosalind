@@ -1,7 +1,7 @@
 package simple;
 
-import rosaIO.Rstring;
 import rosaIO.Task;
+import util.Rstring;
 
 public class BS028_Prob {
 

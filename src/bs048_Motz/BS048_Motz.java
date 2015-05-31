@@ -9,5 +9,6 @@ public class BS048_Motz {
 		Fasta [] fsta = io.scanner.readFastaArray();
 		String s = fsta[0].dna;
 		io.printer.println(Motzkin.motzkinDnaBig(s));
+		io.close();
 	}
 }

@@ -1,18 +1,19 @@
 package bs056_Ctbl;
 
 import java.util.ArrayList;
-import java.util.Scanner;
-
-import rosaIO.Streams;
 import rosaIO.Task;
 
 public class BS056_Ctbl {
 	public static ArrayList<int[]> allNodes = new ArrayList<>();
 	public static ArrayList<Word> words = new ArrayList<>();
+	private static int pos=0;
 
-	public static int pos=0;
+// get all non-trivial nodes (i.e. not leaves). Each non-leaf node is a subtree,
+//	and it's just whatever comes between two matching parenthesis. The whole
+//	tree is also added the last, and should be later skipped
+//	Nodes are stored as their respective parentheses positions 
 	public static void getAllNodes (String nwck) {
-		int start = pos;
+		int start = pos;	//global var make simplifies the recursion
 		while (nwck.charAt(++pos)!=')') {
 			if (nwck.charAt(pos)=='(')
 				getAllNodes(nwck);
@@ -21,6 +22,9 @@ public class BS056_Ctbl {
 		allNodes.add(tmp);
 	}
 
+// class stores the word's positions, so that later we could determine, whther
+//	it is between parenthesis (and belongs to the corresponding sub-tree)
+//	or not
 	public static class Word implements Comparable<Word>{
 		String w;
 		int start;
@@ -35,7 +39,9 @@ public class BS056_Ctbl {
 			return w.compareTo(wrd.w);
 		}
 	}
-	
+
+//	self-made split instead of built-in, because we need to store the absolute
+//	positions of the words in Newick, and we get the them in the process of splitting to words
 	public static void splitToWords(String nwck) {
 		boolean inWord = false;
 		String sep = "(,)";
@@ -66,36 +72,19 @@ public class BS056_Ctbl {
 	}
 
 	public static void main(String[] args) {
-//		String s = "(dog,((elephant,mouse),robot),cat);";
-		String path1 = Streams.OUTPUTPATH+args[1];
-		String path2 = "/home/vvy/git/RosaPy/output/056_CTBL.txt";
 		Task io = new Task("ctbl",args);
 		String s = io.scanner.readLine();
-//		System.out.println(s);
 		getAllNodes(s);
-//		for (int[] lims : allNodes) {
-//			System.out.println(s.substring(lims[0], lims[1]+1));
-//		}
 		splitToWords(s);
-//		for (Word word: words)
-//			System.out.println(word.w +" "+word.start+" "+word.end);
-		Scanner sc = new Scanner(System.in);
 		
 		for (int i=allNodes.size()-2; i>=0; i--) {
 			String out = "";
-//			System.out.println("markUp for "+allNodes.get(i)[0]+" "+allNodes.get(i)[1]);
-//			System.out.println(s.substring(allNodes.get(i)[0],allNodes.get(i)[1]+1));
 			doMarkUp(allNodes.get(i)[0],allNodes.get(i)[1]);
 			for (Word w : words) {
 				out+=(w.markUp);
 //				io.printer.print(w.markUp);
 			}
 			io.printer.println(out);
-			if (out.equals("000000000000000000000000000000000000000000000000000000000000000000000000001010000000000"))
-				System.out.println(s.substring(allNodes.get(i)[0],allNodes.get(i)[1]+1));
-//			System.out.println(out);
-//			sc.nextLine();
 		}
-		Util.compareContent(path1, path2);
 	}
 }

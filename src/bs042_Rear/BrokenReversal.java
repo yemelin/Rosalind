@@ -1,18 +1,19 @@
 package bs042_Rear;
 
+// it's "broken", because it is all about "breakpoints" (e.g 5,6,7 !!! 3,2,1...)
 public class BrokenReversal {
-	public int[] breaks;
-	public int[] perm;
+	public int[] breaks;//permutations breakpoints
+	public int[] perm;	//the new permutation itself
+	public int bpc;		//breakpoints count
+	public BrokenReversal prevBr; //previous reversal, which transforms to the current
+//	by reversal on positions i+1, j, that are saved in revPoints
+	public int[] revPoints; //reversal points from previous to the current
+	
 	public BrokenReversal(int[] prevPerm, int i, int j) {
-//		System.out.println("reversing "+i+" "+j);
 		perm = Reversal.reverse(prevPerm, i, j-1);
-//		System.out.println(Arrays.toString(perm));
 		bpc = countBreakPoints();
-//		System.out.println("break points:");
-//		System.out.println(Arrays.toString(breaks));
 	}
-	int bpc;
-	public BrokenReversal prevBr;
+	
 	public BrokenReversal(BrokenReversal br, int i, int j) {
 		this(br.perm, i, j);
 		prevBr = br;
@@ -21,11 +22,9 @@ public class BrokenReversal {
 		revPoints[1] = j;  //j is a breakPoint position which is equal to
 			//	the last strand's element's position in 1-based numbering
 	}
-	public int[] revPoints;
 	
 	@Override
 	public boolean equals (Object br) {
-//		System.out.println("equals");
 		int [] a = ((BrokenReversal)br).perm;
 		for (int i = 0; i < a.length; i++) {
 			if (a[i]!=perm[i])

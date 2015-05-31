@@ -1,7 +1,9 @@
+//http://rosalind.info/problems/sort/
 package bs048_Motz;
 
 import java.math.BigInteger;
-
+// TODO: nucleoBonding should be moved to the library
+// TODO: Motzkin and Catalan numbers should belong to some specific library
 public class Motzkin {
 	private static char nucleoBonding(char c) {
 		char ret;
@@ -33,23 +35,22 @@ public class Motzkin {
 				for (int k=1; k<=i;k++) {					
 //	possibly, the failure happends with k==i
 					if (dna.charAt(j+i-1) == nucleoBonding(dna.charAt(j+k-1))) {
-						try {
+//						try {          //DEBUG
 						motzByLength[i][j] = motzByLength[i][j]
 								.add(motzByLength[i-k-1][j+k]
 								.multiply(motzByLength[k-1][j]))
 								.mod(BigInteger.valueOf(1000000));
-						}
-						catch (ArrayIndexOutOfBoundsException e){
-							System.out.println("i="+i+", k="+k+", j="+j
-									+", length="+ motzByLength[k].length);
-							System.out.println(motzByLength[i][j]);
-							System.exit(1);
-						}
+//						}
+//						catch (ArrayIndexOutOfBoundsException e){
+//							System.out.println("i="+i+", k="+k+", j="+j
+//									+", length="+ motzByLength[k].length);
+//							System.out.println(motzByLength[i][j]);
+//							System.exit(1);
+//						}
 					}
 				}
 			}
 		}
 		return motzByLength[len][0];
 	}
-
 }

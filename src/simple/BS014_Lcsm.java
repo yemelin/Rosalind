@@ -1,5 +1,5 @@
+//http://rosalind.info/problems/lcsm/
 package simple;
-
 import rosaIO.Fasta;
 import rosaIO.Task;
 

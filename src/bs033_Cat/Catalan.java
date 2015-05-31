@@ -14,6 +14,7 @@ public class Catalan {
 		}
 		return ret;
 	}
+//	non-recursive catalan
 	public static int catalanNonRec(int n) {
 		int [] rets = new int[n+1];
 		rets[0] = 1;
@@ -68,11 +69,11 @@ public class Catalan {
 			System.out.print("dna: "+dna+", n="+n+", ");
 			System.out.println ("split to: "+ dna.substring(1, n)+" and "
 					+ dna.substring(n+1)); }
-//			try {
+//			try {  //DEBUG
 			ret=ret.add(catalanDnaRec(dna, start+1, start+n).multiply(
 					catalanDnaRec(dna, start+n+1, end))).mod(BigInteger.valueOf(1000000));
 //			}
-//			catch (StackOverflowError e) {
+//			catch (StackOverflowError e) {   //DEBUG
 //				System.out.println("yep, overflow");
 //				return ret;
 //			}
@@ -82,7 +83,7 @@ public class Catalan {
 		return ret;
 	}
 
-	public static final String RNA = "ACGU";
+	private static final String RNA = "ACGU";
 	private static void updateCounters (int[] counters, String pattern, char c) {
 		int n = pattern.indexOf(c);
 		if (n!=-1)
@@ -111,7 +112,6 @@ public class Catalan {
 	public static int catalanDna (String dna) {
 		int nbp = dna.length()/2;//number of base pairs
 		if (nbp==0) return 1;
-//		System.out.print("nbp "+nbp+": ");
 		int catByLength[][] = new int[nbp+1][];
 		catByLength[0] = new int[dna.length()+1];
 		for (int j=0; j<=dna.length(); j++) {
@@ -122,9 +122,6 @@ public class Catalan {
 			for (int j=0; j<catByLength[i].length; j++) {
 				for (int k=1; k<=i;k++) {
 					if (dna.charAt(j) == nucleoBonding(dna.charAt(j+k*2-1))) {
-//						System.out.println("i="+i+", j="+j+", "
-//								+ "char="+dna.charAt(j)+
-//								" char2="+dna.charAt(j+k*2-1));
 						catByLength[i][j]=(catByLength[i][j]+ 
 								catByLength[k-1][j+1]*catByLength[i-k][j+k*2])%1000000;
 					}
@@ -137,7 +134,6 @@ public class Catalan {
 	public static BigInteger catalanDnaBig (String dna) {
 		int nbp = dna.length()/2;//number of base pairs
 		if (nbp==0) return BigInteger.ONE;
-//		System.out.print("nbp "+nbp+": ");
 		BigInteger catByLength[][] = new BigInteger[nbp+1][];
 		catByLength[0] = new BigInteger[dna.length()+1];
 		for (int j=0; j<=dna.length(); j++) {
@@ -149,29 +145,24 @@ public class Catalan {
 				catByLength[i][j]=BigInteger.ZERO;
 				for (int k=1; k<=i;k++) {
 					if (dna.charAt(j) == nucleoBonding(dna.charAt(j+k*2-1))) {
-//						System.out.println("i="+i+", j="+j+", "
-//								+ "char="+dna.charAt(j)+
-//								" char2="+dna.charAt(j+k*2-1));
-						try {
+//						try {    //DEBUG
 						catByLength[i][j] = catByLength[i][j]
 								.add(catByLength[k-1][j+1]
 								.multiply(catByLength[i-k][j+k*2]))
 								.mod(BigInteger.valueOf(1000000));
-						}
-						catch (NullPointerException e){
-							System.out.println("i="+i+", k="+k+", j="+j
-									+", length="+ catByLength[k-1].length);
-							System.out.println(catByLength[i][j]);
-							System.out.println(catByLength[k-1][j+1]);
-							System.out.println(catByLength[i-k][j+k*2]);
-							System.exit(1);
-						}
+//						}
+//						catch (NullPointerException e){    //DEBUG
+//							System.out.println("i="+i+", k="+k+", j="+j
+//									+", length="+ catByLength[k-1].length);
+//							System.out.println(catByLength[i][j]);
+//							System.out.println(catByLength[k-1][j+1]);
+//							System.out.println(catByLength[i-k][j+k*2]);
+//							System.exit(1);
+//						}
 					}
 				}
 			}
 		}
 		return catByLength[nbp][0];
 	}
-
-
 }

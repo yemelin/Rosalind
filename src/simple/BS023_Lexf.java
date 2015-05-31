@@ -1,3 +1,4 @@
+//http://rosalind.info/problems/lexf/
 package simple;
 
 import rosaIO.RosaPrinter;
@@ -7,6 +8,7 @@ public class BS023_Lexf {
 	private static StringBuffer pref = new StringBuffer();
 	private static String delimRegEx = "[^A-Z]";//"not a symbol"
 
+//uses global pref, but recuirsion looks simpler to me with a global var
 	public static void printPermutations(char a[], int n, RosaPrinter rp) {
 		for (int i=0; i<a.length; i++) {
 			pref.setCharAt(pref.length()-n, a[i]);

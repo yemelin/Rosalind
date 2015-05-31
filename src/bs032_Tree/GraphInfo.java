@@ -1,15 +1,19 @@
+//http://rosalind.info/problems/tree/
 package bs032_Tree;
 
 public class GraphInfo {
 	private int [][] edges; //pairs of connected nodes
-	private int [] nodeSubtreeRefs;//corresponding ids of trees in STI array  
+	private int [] nodeSubtreeRefs;//NSR - corresponding ids of trees in STI array  
 	private int [] subTreeIndices;//STI - tree's ids
 //	for node i the big subtree, to which it's merged, will be accessible via
 //	the NSR "referencer". Thus, changing the STI item k, we change it for the
 //	whole bunch of node with NSR = k
-	private int [] nodeCount;
-	private int [] edgeCount;
 	private int size;
+
+//	Two fields below are not needed for the task. Could be needed as an extra 
+//	information	for some other following tasks
+//	private int [] nodeCount; 
+//	private int [] edgeCount;
 	
 	public final int getSize() {
 		return size;
@@ -23,8 +27,8 @@ public class GraphInfo {
 		this.edges = edges;
 		size = sz;
 		nodeSubtreeRefs = new int[size+1];
-		nodeCount = new int [size+1];
-		edgeCount = new int [size+1];
+//		nodeCount = new int [size+1];
+//		edgeCount = new int [size+1];
 		subTreeIndices = new int [size+1];
 		
 		buildSubtreeIndex();

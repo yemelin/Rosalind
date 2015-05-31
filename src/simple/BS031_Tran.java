@@ -1,6 +1,6 @@
+// http://rosalind.info/problems/tree/
 package simple;
 
-// http://rosalind.info/problems/tree/
 import rosaIO.Fasta;
 import rosaIO.Task;
 

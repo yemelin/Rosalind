@@ -1,3 +1,4 @@
+//http://rosalind.info/problems/pper/
 package simple;
 
 import java.math.BigInteger;
@@ -17,7 +18,8 @@ public class BS027_Pper {
 					multMod (bigger-bigger/2, smaller, modulo);
 		return (bigger * smaller) % modulo;
 	}
-	
+
+// "falling factorial" hi!/lo! taken by modulo
 	public static int factFallMod(int lo, int hi, int modulo) {
 		int ret = 1;
 		for (int i=lo+1; i<=hi; i++) {

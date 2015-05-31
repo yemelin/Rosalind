@@ -1,9 +1,9 @@
+//http://rosalind.info/problems/lexv/
 package simple;
 
 import rosaIO.RosaPrinter;
 import rosaIO.Task;
 
-//http://rosalind.info/problems/lexv/
 //TODO: get rid of global vars, make input more universal and add to libs
 public class BS039_Lexv {
 
@@ -25,16 +25,20 @@ public class BS039_Lexv {
 		int i = alph.indexOf(c)+1;
 		return alph.charAt(i);
 	}
-	
+// print all words from alph, ordered lexicographically in respect to alph
+// alph defines the order
 	public static void printAllWordsNonRec (String alph, int maxlen, RosaPrinter rp) {
 		int len=0;
 		StringBuffer sb = new StringBuffer();
 		sb.setLength(maxlen);
 		do {
+//	try to add "0" to the left
 			if (len<maxlen) {
 				sb.setCharAt(len++, alph.charAt(0));
 			}
 			else {
+//	otherwise add 1 to the first digit from the right, which is not "9"
+//	the rest is truncated by len when printing
 				while (len>0 && 			
 					sb.charAt(len-1)==alph.charAt(alph.length()-1))
 					len--;
@@ -42,9 +46,10 @@ public class BS039_Lexv {
 					sb.setCharAt(len-1, nextChar(alph, sb.charAt(len-1)));
 				}
 			}
-			rp.println(sb.substring(0,len));
+			rp.println(sb.substring(0,len));//len truncates
 		} while (len>0);
 	}
+	
 //TODO: check for invalid input
 	public static void main(String[] args) {
 		Task io = new Task("lexv", args);
